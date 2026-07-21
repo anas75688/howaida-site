@@ -1,0 +1,13 @@
+node_modules/
+.env
+.DS_Store
+dist/
+build/
+*.log
+*.tmp
+.cache/
+.npm/
+products_db.json
+messages_db.json
+data/products.json
+howaida sitel md/

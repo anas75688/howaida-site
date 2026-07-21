@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://howayda-stayl.netlify.app/sitemap.xml

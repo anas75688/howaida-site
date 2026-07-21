@@ -1,0 +1,541 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حاسبة مقاس العباية حسب الطول والوزن | Howayda Style</title>
+    <meta name="description"
+        content="اكتشفي مقاس العباية المناسب لكِ حسب الطول والوزن باستخدام الحاسبة الذكية للمقاسات من Howayda Style. دليل مقاسات العبايات ونصائح لاختيار الملاءمة المثالية.">
+    <meta name="keywords"
+        content="حاسبة مقاس العباية, معرفة مقاس العباية حسب الطول والوزن, حساب مقاس العباية المناسب, دليل مقاسات العبايات, كيف أعرف مقاسي في العبايات">
+    <link rel="canonical" href="https://howayda-stayl.netlify.app/">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "كيف أعرف مقاسي في العبايات؟",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "يمكنك معرفة مقاس العباية المناسب بإدخال الطول والوزن وتفضيل الملاءمة في الحاسبة الذكية، ثم مقارنة النتيجة مع جدول المقاسات التقريبي."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "هل حاسبة مقاس العباية تعتمد على الطول والوزن؟",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "نعم، تعتمد الحاسبة على الطول والوزن وتفضيلك للعباية العادية أو الملمومة قليلاً أو الفضفاضة."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "هل جدول مقاسات العبايات نهائي؟",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "الجدول تقريبي ويساعدك على اختيار المقاس الأقرب، وقد يختلف الاختيار حسب القصة والقماش وتفضيلك للراحة."
+                }
+            }
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "حاسبة مقاس العباية حسب الطول والوزن",
+        "description": "حاسبة ذكية تساعدك على حساب مقاس العباية المناسب حسب الطول والوزن مع دليل مقاسات ونصائح اختيار العباية.",
+        "inLanguage": "ar",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Howayda Style"
+        },
+        "about": [
+            "حاسبة مقاس العباية",
+            "دليل مقاسات العبايات",
+            "اختيار مقاس العباية المناسب"
+        ]
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Inter:wght@300;400;500;600&family=Tajawal:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo text-logo">
+                <div class="logo-ar">هُوَيْدَا</div>
+                <div class="logo-en">HOWAYDA</div>
+                <div class="logo-atelier">ATELIER</div>
+                <div class="logo-slogan" data-key="logoSubtitle">قمة الأناقة</div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home" data-key="navHome">الرئيسية</a></li>
+                <li><a href="#about" data-key="navAbout">من نحن</a></li>
+                <li><a href="#collections" data-key="navCollections">المجموعات</a></li>
+                <li><a href="#products" data-key="navProducts">المنتجات</a></li>
+                <li><a href="abaya-size-calculator.html" data-key="navCalculator">حاسبة المقاسات</a></li>
+                <li><a href="#services" data-key="navServices">الخدمات</a></li>
+                <li><a href="#contact" data-key="navContact">تواصل معنا</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="lang-switcher">
+                    <button id="lang-ar" class="lang-btn active">AR</button>
+                    <span class="lang-sep">|</span>
+                    <button id="lang-tr" class="lang-btn">TR</button>
+                    <span class="lang-sep">|</span>
+                    <button id="lang-en" class="lang-btn">EN</button>
+                </div>
+                <button id="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <div class="hamburger">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <img src="images/hero_abaya.png" alt="Elegant Howayda Abaya" class="hero-bg">
+        <div class="hero-content fade-in-up">
+            <h1 class="hero-title" data-key="heroTitle">أناقة خالدة في كل تفصيلة</h1>
+            <p class="hero-subtitle" data-key="heroSubtitle">نعيد صياغة الأزياء المحتشمة للمرأة العصرية.</p>
+            <div class="hero-buttons">
+                <a href="#collections" class="btn btn-primary" data-key="exploreBtn">استكشفي المجموعات</a>
+                <a href="#products" class="btn btn-secondary" data-key="orderBtn">اطلبي الآن</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image fade-in-start">
+                    <img src="images/about_abaya.png" alt="Howayda Brand Details">
+                </div>
+                <div class="about-text fade-in-end">
+                    <h2 class="section-title" data-key="aboutTitle">قصتنا</h2>
+                    <h3 class="section-subtitle" data-key="aboutSubtitle">ولدت من شغف بالأزياء المحتشمة</h3>
+                    <p data-key="aboutP1">تنسج هويدا أتيليه قصة من الأناقة الخالدة والراحة العصرية. كل قطعة هي شهادة على
+                        تفانينا في الجودة، ومصممة بدقة لتمنح المرأة الثقة والجاذبية.</p>
+                    <p data-key="aboutP2">تعتمد فلسفتنا على ثلاثة أسس: الأناقة، الراحة، والثقة. نحن نؤمن بأن الأزياء
+                        المحتشمة لا ينبغي أن تساوم أبداً على الفخامة. من أقمشتنا المختارة بعناية إلى حرفيتنا الرائعة،
+                        ندعوك لتجربة الجوهر الحقيقي للجمال الراقي.</p>
+                    <a href="#contact" class="btn btn-outline" data-key="discoverBtn">اكتشفي المزيد</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Brand Vision Parallax -->
+    <section class="vision section-dark parallax">
+        <div class="container text-center fade-in-up">
+            <i class="fa-solid fa-quote-left vision-icon"></i>
+            <h2 class="vision-text" data-key="visionText">"هدفنا هو إعادة صياغة الأزياء المحتشمة من خلال مزج الأناقة
+                والراحة والتفرد لكل امرأة."</h2>
+        </div>
+    </section>
+
+    <!-- Collections Section (Dynamically rendered from CMS) -->
+    <section id="collections" class="collections section">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2 class="section-title" data-key="colTitle">مجموعاتنا</h2>
+                <p data-key="colDesc">تشكيلات منتقاة لكل المناسبات</p>
+            </div>
+            <div class="collection-grid" id="cms-collections-grid">
+                <!-- Skeletons (removed by JS) -->
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section (Dynamically rendered from CMS) -->
+    <section id="products" class="products section bg-secondary">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2 class="section-title" data-key="prodTitle">القطع المميزة</h2>
+                <p data-key="prodDesc">استكشفي روائعنا المصنوعة بحرفية</p>
+            </div>
+            <div class="product-grid" id="featured-products-grid">
+                <!-- Skeletons (removed by JS) -->
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+            </div>
+            <div class="text-center" style="margin-top: 3rem;">
+                <a href="products.html" class="btn btn-primary" data-key="viewAllBtn">عرض جميع المنتجات</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2 class="section-title" data-key="servTitle">خدماتنا</h2>
+                <p data-key="servDesc">تجارب مصممة خصيصاً لعملائنا الكرام</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-in-up">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <h3 data-key="serv1Title">تصميم عبايات مخصص</h3>
+                    <p data-key="serv1Desc">اعملي مع مصممينا لابتكار قطعة فريدة خاصة بك ومصممة بشكل مثالي.</p>
+                </div>
+                <div class="service-card fade-in-up" style="transition-delay: 0.1s;">
+                    <i class="fa-solid fa-shirt"></i>
+                    <h3 data-key="serv2Title">مساعدة في التنسيق</h3>
+                    <p data-key="serv2Desc">نصائح خبراء حول تنسيق العبايات مع الحجابات والإكسسوارات المثالية لأي مناسبة.
+                    </p>
+                </div>
+                <div class="service-card fade-in-up" style="transition-delay: 0.2s;">
+                    <i class="fa-solid fa-ruler"></i>
+                    <h3 data-key="serv3Title">دليل المقاسات</h3>
+                    <p data-key="serv3Desc">دعم مخصص لاختيار المقاس لضمان ملاءمة خالية من العيوب، تجمع بين الراحة
+                        والأناقة.</p>
+                </div>
+                <div class="service-card fade-in-up" style="transition-delay: 0.3s;">
+                    <i class="fa-solid fa-headset"></i>
+                    <h3 data-key="serv4Title">دعم مخصص</h3>
+                    <p data-key="serv4Desc">خدمة عملاء سريعة الاستجابة متاحة مباشرة عبر واتساب لراحتك.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Size Guide Section -->
+    <section id="size-guide" class="size-guide section bg-secondary">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2 class="section-title" data-key="sizeTitle">دليل المقاسات</h2>
+                <p data-key="sizeDesc">ابحثي عن مقاسك المثالي</p>
+            </div>
+            <div class="table-container fade-in-up">
+                <table class="size-table">
+                    <thead>
+                        <tr>
+                            <th data-key="thSize">المقاس</th>
+                            <th data-key="thLength">الطول (إنش)</th>
+                            <th data-key="thBust">الصدر (إنش)</th>
+                            <th data-key="thSleeve">الكم (إنش)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>52 (S)</td>
+                            <td>52</td>
+                            <td>40</td>
+                            <td>26</td>
+                        </tr>
+                        <tr>
+                            <td>54 (M)</td>
+                            <td>54</td>
+                            <td>42</td>
+                            <td>27</td>
+                        </tr>
+                        <tr>
+                            <td>56 (L)</td>
+                            <td>56</td>
+                            <td>44</td>
+                            <td>28</td>
+                        </tr>
+                        <tr>
+                            <td>58 (XL)</td>
+                            <td>58</td>
+                            <td>46</td>
+                            <td>29</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="smart-size-calculator fade-in-up"
+                style="margin-top: 4rem; background: var(--bg-primary); padding: 3rem; border-radius: var(--border-radius); box-shadow: var(--shadow-md);">
+                <div class="section-header" style="margin-bottom: 2rem;">
+                    <h3 data-key="calcTitle"
+                        style="color: var(--brand-color); margin-bottom: 0.5rem; font-family: var(--font-heading); font-size: 2rem;">
+                        الحاسبة الذكية للمقاسات</h3>
+                    <p data-key="calcDesc" style="color: var(--text-secondary);">أدخلي طولك ووزنك وسنقترح المقاس الأنسب
+                        بناءً على تناسق جسمك</p>
+                </div>
+                <div class="calc-grid"
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label data-key="calcHeight"
+                            style="display: block; margin-bottom: 0.5rem; font-weight: 500;">الطول (سم)</label>
+                        <input type="number" id="calc-height" placeholder="165" min="140" max="200"
+                            style="width: 100%; padding: 0.8rem; border: 1px solid var(--text-secondary); border-radius: 5px; background: transparent; color: var(--text-primary); font-family: var(--font-body);">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label data-key="calcWeight"
+                            style="display: block; margin-bottom: 0.5rem; font-weight: 500;">الوزن (كج)</label>
+                        <input type="number" id="calc-weight" placeholder="60" min="40" max="150"
+                            style="width: 100%; padding: 0.8rem; border: 1px solid var(--text-secondary); border-radius: 5px; background: transparent; color: var(--text-primary); font-family: var(--font-body);">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label data-key="calcPref"
+                            style="display: block; margin-bottom: 0.5rem; font-weight: 500;">تفضيل الملاءمة
+                            (اختياري)</label>
+                        <select id="calc-pref"
+                            style="width: 100%; padding: 0.8rem; border: 1px solid var(--text-secondary); border-radius: 5px; background: transparent; color: var(--text-primary); font-family: var(--font-body);">
+                            <option value="normal" data-key="prefNormal">عادي</option>
+                            <option value="tight" data-key="prefTight">ملموم قليلاً</option>
+                            <option value="loose" data-key="prefLoose">فضفاض جداً</option>
+                        </select>
+                    </div>
+                </div>
+                <button id="calc-btn" class="btn btn-primary btn-block" data-key="calcBtn"
+                    style="max-width: 300px; margin: 0 auto; display: block;">احسب المقاس</button>
+
+                <div id="calc-result" class="calc-result hidden"
+                    style="margin-top: 2rem; padding: 2rem; background: var(--bg-secondary); border-radius: 8px; text-align: center; transition: all 0.3s ease;">
+                    <h4 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--brand-color);" id="res-size">المقاس
+                        المناسب لك هو 2</h4>
+                    <p id="res-desc" style="margin-bottom: 1.5rem;"></p>
+                    <span id="res-fit" class="badge"
+                        style="background: var(--accent-gold); color: var(--bg-primary); padding: 0.5rem 1rem; border-radius: 20px; font-weight: 500;"></span>
+                </div>
+            </div>
+            <div class="size-seo-content fade-in-up" aria-labelledby="abaya-size-calculator-guide">
+                <div class="seo-content-block">
+                    <h3 id="abaya-size-calculator-guide">كيف تساعدك الحاسبة الذكية على اختيار مقاس العباية؟</h3>
+                    <p>
+                        تساعدك الحاسبة الذكية للمقاسات من Howayda Style على حساب مقاس العباية المناسب
+                        بالاعتماد على الطول والوزن وتفضيل الملاءمة. الهدف هو إعطاؤك اقتراحًا عمليًا
+                        قبل الطلب، سواء كنتِ تبحثين عن عباية بمقاس مريح، أو عباية أقرب للجسم، أو قصة
+                        فضفاضة تناسب الاستخدام اليومي والمناسبات.
+                    </p>
+                </div>
+
+                <div class="seo-content-block">
+                    <h3>نصائح لاختيار مقاس العباية المناسب</h3>
+                    <ul class="seo-tips-list">
+                        <li>اختاري المقاس حسب طولك أولًا، لأن طول العباية يؤثر على الراحة والشكل النهائي.</li>
+                        <li>إذا كنتِ تفضلين العبايات الواسعة، اختاري ملاءمة فضفاضة من الحاسبة.</li>
+                        <li>قارني نتيجة الحاسبة مع جدول مقاسات العبايات التقريبي قبل اعتماد الطلب.</li>
+                        <li>عند التردد بين مقاسين، اختاري الأكبر إذا كانت القصة مستقيمة أو القماش غير مطاطي.</li>
+                    </ul>
+                </div>
+
+                <div class="seo-content-block">
+                    <h3>جدول مقاسات تقريبي للعبايات</h3>
+                    <div class="table-container compact-size-table">
+                        <table class="size-table">
+                            <thead>
+                                <tr>
+                                    <th>المقاس</th>
+                                    <th>الطول المناسب تقريبًا</th>
+                                    <th>الوزن المناسب تقريبًا</th>
+                                    <th>الملاءمة</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>52</td>
+                                    <td>150 - 158 سم</td>
+                                    <td>40 - 55 كج</td>
+                                    <td>قصير / ناعم</td>
+                                </tr>
+                                <tr>
+                                    <td>54</td>
+                                    <td>158 - 166 سم</td>
+                                    <td>50 - 68 كج</td>
+                                    <td>قياسي</td>
+                                </tr>
+                                <tr>
+                                    <td>56</td>
+                                    <td>166 - 174 سم</td>
+                                    <td>60 - 82 كج</td>
+                                    <td>مريح</td>
+                                </tr>
+                                <tr>
+                                    <td>58</td>
+                                    <td>174 سم فأكثر</td>
+                                    <td>75 كج فأكثر</td>
+                                    <td>طويل / فضفاض</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="seo-content-block">
+                    <h3>أسئلة شائعة عن حاسبة مقاس العباية</h3>
+                    <div class="size-faq-list">
+                        <details>
+                            <summary>كيف أعرف مقاسي في العبايات؟</summary>
+                            <p>أدخلي طولك ووزنك في الحاسبة، ثم اختاري تفضيل الملاءمة لتحصلي على مقاس مقترح.</p>
+                        </details>
+                        <details>
+                            <summary>هل معرفة مقاس العباية حسب الطول والوزن كافية؟</summary>
+                            <p>هي نقطة بداية ممتازة، لكن القصة والقماش وتفضيلك للوسع قد تؤثر على القرار النهائي.</p>
+                        </details>
+                        <details>
+                            <summary>ماذا أفعل إذا كنت بين مقاسين؟</summary>
+                            <p>اختاري المقاس الأكبر إذا كنتِ تفضلين الراحة أو العباية الفضفاضة، واختاري الأصغر إذا كنتِ تحبين الملاءمة الأقرب للجسم.</p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section (Dynamically rendered from CMS) -->
+    <section class="testimonials section bg-secondary">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2 class="section-title" data-key="testTitle">آراء العملاء</h2>
+                <p data-key="testDesc">ما تقوله عميلاتنا الأنيقات</p>
+            </div>
+            <div class="testimonials-grid" id="cms-testimonials-grid">
+                <!-- Skeletons (removed by JS) -->
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section bg-secondary">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info fade-in-start">
+                    <h2 class="section-title" data-key="contactTitle">تواصلوا معنا</h2>
+                    <p data-key="contactDesc">نود أن نسمع منك. للطلبات الخاصة أو استشارات التصميم أو الاستفسارات العامة،
+                        يرجى التواصل معنا.</p>
+
+                    <div class="contact-links">
+                        <a href="https://wa.me/905370498740?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%A7%D9%84%D8%B9%D8%A8%D8%A7%D9%8A%D8%A7%D8%AA"
+                            target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp large"
+                            data-key="chatWhatsapp"><i class="fa-brands fa-whatsapp"></i> تحدثي عبر واتساب</a>
+                        <a href="https://www.instagram.com/howayda_2026/" target="_blank" rel="noopener noreferrer"
+                            class="social-link" data-key="followInsta"><i class="fa-brands fa-instagram"></i> تابعنا على
+                            إنستجرام</a>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper fade-in-end">
+                    <h3 data-key="leaveReviewTitle"
+                        style="margin-bottom: 1.5rem; color: var(--brand-color); font-family: var(--font-heading); font-size: 1.8rem;">
+                        اتركي تقييمك</h3>
+                    <form id="feedback-form" class="contact-form">
+                        <div class="form-group">
+                            <label for="review-name" data-key="labelName">الاسم الكامل</label>
+                            <input type="text" id="review-name" required placeholder="أدخلي اسمك" data-key="placeName">
+                        </div>
+                        <div class="form-group">
+                            <label data-key="labelRating">التقييم</label>
+                            <div class="star-rating" id="review-rating"
+                                style="color: var(--accent-gold); font-size: 1.5rem; cursor: pointer; display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                                <i class="fa-regular fa-star" data-value="1"></i>
+                                <i class="fa-regular fa-star" data-value="2"></i>
+                                <i class="fa-regular fa-star" data-value="3"></i>
+                                <i class="fa-regular fa-star" data-value="4"></i>
+                                <i class="fa-regular fa-star" data-value="5"></i>
+                            </div>
+                            <input type="hidden" id="review-rating-val" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="review-message" data-key="labelReviewMsg">رسالتك</label>
+                            <textarea id="review-message" rows="4" required placeholder="شاركينا رأيك في منتجاتنا..."
+                                data-key="placeReviewMsg"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" data-key="sendReviewBtn">إرسال
+                            التقييم</button>
+                    </form>
+                    <div id="feedback-success" class="hidden"
+                        style="margin-top: 1rem; color: #25D366; font-weight: 500; text-align: center; padding: 1rem; background: rgba(37, 211, 102, 0.1); border-radius: 5px;"
+                        data-key="feedbackSuccess">تم إرسال تقييمك بنجاح! شكراً لك.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Modal -->
+    <div id="product-modal" class="modal hidden">
+        <div class="modal-overlay" id="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-grid">
+                <div class="modal-images">
+                    <img id="modal-main-img" src="" alt="Product Image">
+                    <div class="modal-thumbnails" id="modal-thumbnails"></div>
+                </div>
+                <div class="modal-info">
+                    <span id="modal-availability" class="badge"></span>
+                    <h2 id="modal-title"
+                        style="font-family: var(--font-heading); color: var(--brand-color); margin-bottom: 0.5rem;">
+                    </h2>
+                    <p class="modal-price" id="modal-price"
+                        style="font-weight: 600; font-size: 1.2rem; margin-bottom: 1.5rem;"></p>
+                    <p id="modal-desc" style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 2.5rem;">
+                    </p>
+                    <a href="#" id="modal-wa-btn" target="_blank" class="btn btn-whatsapp btn-block"
+                        style="justify-content: center; padding: 1rem;"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand text-logo" style="align-items: flex-start; color: var(--white);">
+                    <div class="logo-ar" style="color: var(--white);">هُوَيْدَا</div>
+                    <div class="logo-en" style="color: var(--white);">HOWAYDA</div>
+                    <div class="logo-atelier" style="color: var(--white);">ATELIER</div>
+                    <div class="logo-slogan" data-key="logoSubtitle" style="color: var(--white);">قمة الأناقة</div>
+                </div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="#home" data-key="navHome">الرئيسية</a></li>
+                        <li><a href="#about" data-key="navAbout">من نحن</a></li>
+                        <li><a href="#collections" data-key="navCollections">المجموعات</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="#products" data-key="navProducts">المنتجات</a></li>
+                        <li><a href="abaya-size-calculator.html" data-key="navCalculator">حاسبة المقاسات</a></li>
+                        <li><a href="#contact" data-key="navContact">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <a href="#home" class="back-to-top" aria-label="Back to Top">
+                    <i class="fa-solid fa-chevron-up"></i>
+                </a>
+            </div>
+            <div class="footer-bottom">
+                <p data-key="footerRights">&copy; 2026 هويدا أتيليه. جميع الحقوق محفوظة.</p>
+                <p data-key="footerCredit" style="margin-top: 0.35rem; font-size: 0.85rem; opacity: 0.78;">تم التصميم والتطوير بواسطة <a href="https://www.instagram.com/bestemarketingcom/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 3px;">فريق بست</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="js/config.js"></script>
+    <script src="js/sync-engine.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

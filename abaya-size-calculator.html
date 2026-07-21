@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حاسبة مقاس العباية حسب الطول والوزن | Howayda Style</title>
+    <meta name="description"
+        content="اكتشفي مقاس العباية المناسب لكِ حسب الطول والوزن باستخدام الحاسبة الذكية للمقاسات من Howayda Style مع دليل مقاسات وجدول ونصائح اختيار العباية.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://howayda-stayl.netlify.app/abaya-size-calculator">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ar_AR">
+    <meta property="og:site_name" content="Howayda Style">
+    <meta property="og:title" content="حاسبة مقاس العباية حسب الطول والوزن | Howayda Style">
+    <meta property="og:description"
+        content="احسبي مقاس العباية المناسب لكِ حسب الطول والوزن وتفضيل الملاءمة باستخدام الحاسبة الذكية للمقاسات.">
+    <meta property="og:url" content="https://howayda-stayl.netlify.app/abaya-size-calculator">
+    <meta property="og:image" content="https://howayda-stayl.netlify.app/images/hero_abaya.png">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "كيف أعرف مقاسي في العبايات؟",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "يمكنك معرفة مقاس العباية المناسب بإدخال الطول والوزن وتفضيل الملاءمة في الحاسبة الذكية، ثم مقارنة النتيجة مع جدول المقاسات التقريبي."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "هل حاسبة مقاس العباية تعتمد على الطول والوزن؟",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "نعم، تعتمد الحاسبة على الطول والوزن وتفضيلك للعباية العادية أو الملمومة قليلاً أو الفضفاضة."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "ماذا أفعل إذا كنت بين مقاسين؟",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "اختاري المقاس الأكبر إذا كنتِ تفضلين الراحة أو القصة الفضفاضة، واختاري المقاس الأصغر إذا كنتِ تفضلين ملاءمة أقرب للجسم."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "هل جدول مقاسات العبايات نهائي؟",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "الجدول تقريبي ويساعدك على اختيار المقاس الأقرب، وقد يختلف الاختيار حسب القصة والقماش وتفضيلك للراحة."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Inter:wght@300;400;500;600&family=Tajawal:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .calc-result.hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar scrolled">
+        <div class="nav-container">
+            <a href="index.html" class="logo text-logo">
+                <div class="logo-ar">هُوَيْدَا</div>
+                <div class="logo-en">HOWAYDA</div>
+                <div class="logo-atelier">ATELIER</div>
+                <div class="logo-slogan" data-key="logoSubtitle">قمة الأناقة</div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#home" data-key="navHome">الرئيسية</a></li>
+                <li><a href="index.html#about" data-key="navAbout">من نحن</a></li>
+                <li><a href="index.html#collections" data-key="navCollections">المجموعات</a></li>
+                <li><a href="products.html" data-key="navProducts">المنتجات</a></li>
+                <li><a href="abaya-size-calculator.html" data-key="navCalculator" class="active">حاسبة المقاسات</a></li>
+                <li><a href="index.html#services" data-key="navServices">الخدمات</a></li>
+                <li><a href="index.html#contact" data-key="navContact">تواصل معنا</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="lang-switcher">
+                    <button id="lang-ar" class="lang-btn active">AR</button>
+                    <span class="lang-sep">|</span>
+                    <button id="lang-tr" class="lang-btn">TR</button>
+                    <span class="lang-sep">|</span>
+                    <button id="lang-en" class="lang-btn">EN</button>
+                </div>
+                <button id="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <div class="hamburger">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="calculator" class="size-guide section bg-secondary" style="padding-top: 8rem;">
+            <div class="container">
+                <div class="section-header fade-in-up">
+                    <h1 class="section-title" data-key="calcPageTitle">حاسبة مقاس العباية حسب الطول والوزن</h1>
+                    <p data-key="calcDesc">أدخلي طولك ووزنك وسنقترح المقاس الأنسب بناءً على تناسق جسمك</p>
+                </div>
+
+                <div class="smart-size-calculator fade-in-up"
+                    style="background: var(--bg-primary); padding: 3rem; border-radius: var(--border-radius); box-shadow: var(--shadow-md);">
+                    <div class="section-header" style="margin-bottom: 2rem;">
+                        <h2 data-key="calcTitle"
+                            style="color: var(--brand-color); margin-bottom: 0.5rem; font-family: var(--font-heading); font-size: 2rem;">
+                            الحاسبة الذكية للمقاسات</h2>
+                        <p data-key="calcDesc" style="color: var(--text-secondary);">أدخلي طولك ووزنك وسنقترح المقاس الأنسب
+                            بناءً على تناسق جسمك</p>
+                    </div>
+                    <div class="calc-grid"
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label for="calc-height" data-key="calcHeight"
+                                style="display: block; margin-bottom: 0.5rem; font-weight: 500;">الطول (سم)</label>
+                            <input type="number" id="calc-height" placeholder="165" min="140" max="200" required
+                                inputmode="decimal" autocomplete="off" aria-describedby="calc-error"
+                                style="width: 100%; padding: 0.8rem; border: 1px solid var(--text-secondary); border-radius: 5px; background: transparent; color: var(--text-primary); font-family: var(--font-body);">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label for="calc-weight" data-key="calcWeight"
+                                style="display: block; margin-bottom: 0.5rem; font-weight: 500;">الوزن (كج)</label>
+                            <input type="number" id="calc-weight" placeholder="60" min="40" max="150" required
+                                inputmode="decimal" autocomplete="off" aria-describedby="calc-error"
+                                style="width: 100%; padding: 0.8rem; border: 1px solid var(--text-secondary); border-radius: 5px; background: transparent; color: var(--text-primary); font-family: var(--font-body);">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label for="calc-pref" data-key="calcPref"
+                                style="display: block; margin-bottom: 0.5rem; font-weight: 500;">تفضيل الملاءمة
+                                (اختياري)</label>
+                            <select id="calc-pref"
+                                style="width: 100%; padding: 0.8rem; border: 1px solid var(--text-secondary); border-radius: 5px; background: transparent; color: var(--text-primary); font-family: var(--font-body);">
+                                <option value="normal" data-key="prefNormal">عادي</option>
+                                <option value="tight" data-key="prefTight">ملموم قليلاً</option>
+                                <option value="loose" data-key="prefLoose">فضفاض جداً</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button id="calc-btn" class="btn btn-primary btn-block" data-key="calcBtn"
+                        aria-controls="calc-result" style="max-width: 300px; margin: 0 auto; display: block;">احسب المقاس</button>
+                    <p id="calc-error" data-key="calcError" role="alert" aria-live="polite"
+                        style="display: none; margin: 1rem 0 0; color: var(--brand-color); text-align: center;">
+                        من فضلك أدخلي الطول والوزن أولًا.
+                    </p>
+
+                    <div id="calc-result" class="calc-result hidden"
+                        aria-live="polite" aria-hidden="true"
+                        style="margin-top: 2rem; padding: 2rem; background: var(--bg-secondary); border-radius: 8px; text-align: center; transition: all 0.3s ease;">
+                        <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--brand-color);" id="res-size"></h3>
+                        <p id="res-desc" style="margin-bottom: 1.5rem;"></p>
+                        <span id="res-fit" class="badge"
+                            style="background: var(--accent-gold); color: var(--bg-primary); padding: 0.5rem 1rem; border-radius: 20px; font-weight: 500;"></span>
+                    </div>
+                </div>
+
+                <div class="size-seo-content fade-in-up" aria-labelledby="abaya-size-calculator-guide">
+                    <div class="seo-content-block">
+                        <h3 id="abaya-size-calculator-guide" data-key="seoIntroTitle">كيف تساعدك الحاسبة الذكية على اختيار مقاس العباية؟</h3>
+                        <p data-key="seoIntroText">
+                            تساعدك الحاسبة الذكية للمقاسات من Howayda Style على حساب مقاس العباية المناسب
+                            بالاعتماد على الطول والوزن وتفضيل الملاءمة. الهدف هو إعطاؤك اقتراحًا عمليًا
+                            قبل الطلب، سواء كنتِ تبحثين عن عباية بمقاس مريح، أو عباية أقرب للجسم، أو قصة
+                            فضفاضة تناسب الاستخدام اليومي والمناسبات.
+                        </p>
+                    </div>
+
+                    <div class="seo-content-block">
+                        <h3 data-key="seoSizeGuideTitle">دليل مقاسات العبايات</h3>
+                        <div class="table-container compact-size-table">
+                            <table class="size-table">
+                                <thead>
+                                    <tr>
+                                        <th data-key="thSize">المقاس</th>
+                                        <th data-key="thLength">الطول (إنش)</th>
+                                        <th data-key="thBust">الصدر (إنش)</th>
+                                        <th data-key="thSleeve">الكم (إنش)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>52 (S)</td>
+                                        <td>52</td>
+                                        <td>40</td>
+                                        <td>26</td>
+                                    </tr>
+                                    <tr>
+                                        <td>54 (M)</td>
+                                        <td>54</td>
+                                        <td>42</td>
+                                        <td>27</td>
+                                    </tr>
+                                    <tr>
+                                        <td>56 (L)</td>
+                                        <td>56</td>
+                                        <td>44</td>
+                                        <td>28</td>
+                                    </tr>
+                                    <tr>
+                                        <td>58 (XL)</td>
+                                        <td>58</td>
+                                        <td>46</td>
+                                        <td>29</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="seo-content-block">
+                        <h3 data-key="seoTipsTitle">نصائح لاختيار مقاس العباية المناسب</h3>
+                        <ul class="seo-tips-list">
+                            <li data-key="seoTip1">اختاري المقاس حسب طولك أولًا، لأن طول العباية يؤثر على الراحة والشكل النهائي.</li>
+                            <li data-key="seoTip2">إذا كنتِ تفضلين العبايات الواسعة، اختاري ملاءمة فضفاضة من الحاسبة.</li>
+                            <li data-key="seoTip3">قارني نتيجة الحاسبة مع جدول مقاسات العبايات التقريبي قبل اعتماد الطلب.</li>
+                            <li data-key="seoTip4">عند التردد بين مقاسين، اختاري الأكبر إذا كانت القصة مستقيمة أو القماش غير مطاطي.</li>
+                        </ul>
+                    </div>
+
+                    <div class="seo-content-block">
+                        <h3 data-key="seoApproxTitle">جدول مقاسات تقريبي للعبايات</h3>
+                        <div class="table-container compact-size-table">
+                            <table class="size-table">
+                                <thead>
+                                    <tr>
+                                        <th data-key="approxSizeHeader">المقاس</th>
+                                        <th data-key="approxHeightHeader">الطول المناسب تقريبًا</th>
+                                        <th data-key="approxWeightHeader">الوزن المناسب تقريبًا</th>
+                                        <th data-key="approxFitHeader">الملاءمة</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>52</td>
+                                        <td data-key="approxHeight52">150 - 158 سم</td>
+                                        <td data-key="approxWeight52">40 - 55 كج</td>
+                                        <td data-key="approxFit52">قصير / ناعم</td>
+                                    </tr>
+                                    <tr>
+                                        <td>54</td>
+                                        <td data-key="approxHeight54">158 - 166 سم</td>
+                                        <td data-key="approxWeight54">50 - 68 كج</td>
+                                        <td data-key="approxFit54">قياسي</td>
+                                    </tr>
+                                    <tr>
+                                        <td>56</td>
+                                        <td data-key="approxHeight56">166 - 174 سم</td>
+                                        <td data-key="approxWeight56">60 - 82 كج</td>
+                                        <td data-key="approxFit56">مريح</td>
+                                    </tr>
+                                    <tr>
+                                        <td>58</td>
+                                        <td data-key="approxHeight58">174 سم فأكثر</td>
+                                        <td data-key="approxWeight58">75 كج فأكثر</td>
+                                        <td data-key="approxFit58">طويل / فضفاض</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="seo-content-block">
+                        <h3 data-key="faqSectionTitle">أسئلة شائعة عن حاسبة مقاس العباية</h3>
+                        <div class="size-faq-list">
+                            <details>
+                                <summary data-key="faqQ1">كيف أعرف مقاسي في العبايات؟</summary>
+                                <p data-key="faqA1">أدخلي طولك ووزنك في الحاسبة، ثم اختاري تفضيل الملاءمة لتحصلي على مقاس مقترح.</p>
+                            </details>
+                            <details>
+                                <summary data-key="faqQ2">هل معرفة مقاس العباية حسب الطول والوزن كافية؟</summary>
+                                <p data-key="faqA2">هي نقطة بداية ممتازة، لكن القصة والقماش وتفضيلك للوسع قد تؤثر على القرار النهائي.</p>
+                            </details>
+                            <details>
+                                <summary data-key="faqQ3">ماذا أفعل إذا كنت بين مقاسين؟</summary>
+                                <p data-key="faqA3">اختاري المقاس الأكبر إذا كنتِ تفضلين الراحة أو العباية الفضفاضة، واختاري الأصغر إذا كنتِ تحبين الملاءمة الأقرب للجسم.</p>
+                            </details>
+                            <details>
+                                <summary data-key="faqQ4">هل جدول مقاسات العبايات نهائي؟</summary>
+                                <p data-key="faqA4">الجدول تقريبي ويساعدك على اختيار المقاس الأقرب، وقد يختلف الاختيار حسب القصة والقماش وتفضيلك للراحة.</p>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand text-logo" style="align-items: flex-start; color: var(--white);">
+                    <div class="logo-ar" style="color: var(--white);">هُوَيْدَا</div>
+                    <div class="logo-en" style="color: var(--white);">HOWAYDA</div>
+                    <div class="logo-atelier" style="color: var(--white);">ATELIER</div>
+                    <div class="logo-slogan" data-key="logoSubtitle" style="color: var(--white);">قمة الأناقة</div>
+                </div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="index.html#home" data-key="navHome">الرئيسية</a></li>
+                        <li><a href="index.html#about" data-key="navAbout">من نحن</a></li>
+                        <li><a href="index.html#collections" data-key="navCollections">المجموعات</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="products.html" data-key="navProducts">المنتجات</a></li>
+                        <li><a href="abaya-size-calculator.html" data-key="navCalculator">حاسبة المقاسات</a></li>
+                        <li><a href="index.html#contact" data-key="navContact">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <a href="#calculator" class="back-to-top" aria-label="Back to Top">
+                    <i class="fa-solid fa-chevron-up"></i>
+                </a>
+            </div>
+            <div class="footer-bottom">
+                <p data-key="footerRights">&copy; 2026 هويدا أتيليه. جميع الحقوق محفوظة.</p>
+                <p data-key="footerCredit" style="margin-top: 0.35rem; font-size: 0.85rem; opacity: 0.78;">تم التصميم والتطوير بواسطة <a href="https://www.instagram.com/bestemarketingcom/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 3px;">فريق بست</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="js/config.js"></script>
+    <script src="js/sync-engine.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const calcBtn = document.getElementById('calc-btn');
+            const heightInput = document.getElementById('calc-height');
+            const weightInput = document.getElementById('calc-weight');
+            const errorEl = document.getElementById('calc-error');
+            const resultEl = document.getElementById('calc-result');
+
+            if (!calcBtn || !heightInput || !weightInput || !errorEl || !resultEl) return;
+
+            const clearError = () => {
+                errorEl.style.display = 'none';
+                heightInput.removeAttribute('aria-invalid');
+                weightInput.removeAttribute('aria-invalid');
+            };
+
+            calcBtn.addEventListener('click', () => {
+                const hasHeight = heightInput.value.trim() !== '';
+                const hasWeight = weightInput.value.trim() !== '';
+
+                if (!hasHeight || !hasWeight) {
+                    errorEl.style.display = 'block';
+                    heightInput.setAttribute('aria-invalid', String(!hasHeight));
+                    weightInput.setAttribute('aria-invalid', String(!hasWeight));
+                    resultEl.classList.add('hidden');
+                    resultEl.setAttribute('aria-hidden', 'true');
+                    return;
+                }
+
+                clearError();
+                resultEl.setAttribute('aria-hidden', String(resultEl.classList.contains('hidden')));
+            });
+
+            [heightInput, weightInput].forEach(input => {
+                input.addEventListener('input', clearError);
+            });
+        });
+    </script>
+</body>
+
+</html>

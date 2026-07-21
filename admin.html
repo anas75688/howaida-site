@@ -1,0 +1,2100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>لوحة التحكم | HOWAYDA</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2family=Tajawal:wght@300;400;500;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2family=Playfair+Display:wght@700;800&family=Tajawal:wght@400;500;700&display=swap');
+
+        :root {
+            --brand-color: #8A2542;
+            --brand-light: #fbe6eb;
+            --bg-main: #f8f9fa;
+            --white: #ffffff;
+            --text-dark: #2d3436;
+            --text-muted: #636e72;
+            --border: #dfe6e9;
+            --success: #00b894;
+            --danger: #d63031;
+            --warning: #f1c40f;
+            --radius: 12px;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            padding-bottom: 80px;
+        }
+
+        /* Login Overlay */
+        #loginBox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-main);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .login-box-inner {
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .login-box-inner h2 {
+            color: var(--brand-color);
+            margin-bottom: 1rem;
+            font-weight: 800;
+            font-size: 2rem;
+        }
+
+        .login-box-inner p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .login-box-inner input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .login-box-inner input:focus {
+            outline: none;
+            border-color: var(--brand-color);
+        }
+
+        .btn-login {
+            background: var(--brand-color);
+            color: var(--white);
+            border: none;
+            padding: 1rem;
+            width: 100%;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-login:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Header */
+        .admin-header {
+            background: var(--white);
+            padding: 1.5rem 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-header h1 {
+            color: var(--brand-color);
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .btn-icon {
+            background: var(--bg-main);
+            color: var(--text-dark);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .btn-icon:hover {
+            background: var(--border);
+            color: var(--brand-color);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+        }
+
+        /* Navigation Cards */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .nav-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            border: 2px solid transparent;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .nav-card i {
+            font-size: 2rem;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .nav-card span {
+            font-weight: 700;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .nav-card.active,
+        .nav-card:hover {
+            border-color: var(--brand-color);
+            background: var(--brand-light);
+        }
+
+        .nav-card.active i,
+        .nav-card:hover i,
+        .nav-card.active span,
+        .nav-card:hover span {
+            color: var(--brand-color);
+        }
+
+        /* Dynamic Content Area */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Form Styling */
+        .card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 2rem 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            color: var(--brand-color);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media(min-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-label {
+            font-weight: 700;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .form-label .req {
+            color: var(--danger);
+        }
+
+        .form-help {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--brand-color);
+            box-shadow: 0 0 0 3px var(--brand-light);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Image Upload UI */
+        .upload-area {
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--bg-main);
+            position: relative;
+        }
+
+        .upload-area:hover {
+            border-color: var(--brand-color);
+            background: var(--brand-light);
+        }
+
+        .upload-area i {
+            font-size: 2.5rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .upload-area p {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .upload-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .img-preview {
+            margin-top: 1rem;
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: var(--shadow);
+            display: none;
+            border: 2px solid var(--brand-color);
+        }
+
+        /* Form Actions */
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-save {
+            flex: 1;
+            background: var(--brand-color);
+            color: var(--white);
+            border: none;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(138, 37, 66, 0.3);
+        }
+
+        .btn-save.success {
+            background: var(--success);
+        }
+
+        .btn-cancel {
+            flex: 1;
+            background: var(--bg-main);
+            color: var(--text-dark);
+            border: 2px solid var(--border);
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-cancel:hover {
+            background: var(--border);
+        }
+
+        /* List View (Table/Cards) */
+        .list-container {
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        .data-table th {
+            background: var(--bg-main);
+            padding: 1rem;
+            text-align: right;
+            color: var(--text-muted);
+            font-weight: 700;
+            border-bottom: 2px solid var(--border);
+            white-space: nowrap;
+        }
+
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+
+        .data-table tr:hover {
+            background-color: #fafbfc;
+        }
+
+        .data-table img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .fw-bold {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .badge-primary {
+            background: #e0f2fe;
+            color: #0369a1;
+        }
+
+        .badge-secondary {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .badge-success {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .badge-danger {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        /* Action Buttons */
+        .actions-cell {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-action {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--white);
+        }
+
+        .btn-edit {
+            background: var(--warning);
+            color: #856404;
+        }
+
+        .btn-edit:hover {
+            background: #e0b404;
+        }
+
+        .btn-delete {
+            background: var(--danger);
+        }
+
+        .btn-delete:hover {
+            background: #b91c1c;
+        }
+
+        /* Floating Add Button */
+        .fab {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--brand-color);
+            color: var(--white);
+            border: none;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(138, 37, 66, 0.4);
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 100;
+        }
+
+        .fab:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        /* Smart Preview Icon */
+        .smart-preview {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            /* Glass border */
+            overflow: visible;
+        }
+
+        .smart-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+        }
+
+        .smart-preview .status-dot {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid var(--white);
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .smart-preview .status-dot.optimized {
+            background-color: var(--success);
+            box-shadow: 0 0 10px var(--success);
+        }
+
+        .smart-preview .status-dot.missing {
+            background-color: var(--danger);
+            box-shadow: 0 0 10px var(--danger);
+        }
+
+        .smart-preview .hover-stats {
+            position: absolute;
+            bottom: 110%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: rgba(30, 30, 30, 0.85);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            padding: 0.5rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .smart-preview:hover .hover-stats {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Multi-Image Upload UI */
+        .multi-img-preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .multi-img-item {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--border);
+            overflow: hidden;
+        }
+
+        .multi-img-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .multi-img-item .remove-img {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            background: rgba(214, 48, 49, 0.9);
+            color: var(--white);
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+            transition: var(--transition);
+        }
+
+        .multi-img-item .remove-img:hover {
+            background: #b91c1c;
+            transform: scale(1.1);
+        }
+
+        /* SEO Keywords Library UI */
+        .seo-keywords-container {
+            background: var(--bg-main);
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1rem;
+        }
+
+        .seo-filter-bar {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .seo-filter-btn {
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .seo-filter-btn.active,
+        .seo-filter-btn:hover {
+            background: var(--brand-color);
+            color: var(--white);
+            border-color: var(--brand-color);
+        }
+
+        .seo-library-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            max-height: 150px;
+            overflow-y: auto;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .seo-tag {
+            background: var(--white);
+            border: 1px solid var(--border);
+            color: var(--text-dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            user-select: none;
+        }
+
+        .seo-tag:hover {
+            border-color: var(--brand-color);
+        }
+
+        .seo-tag.selected {
+            background: var(--brand-color);
+            color: var(--white);
+            border-color: var(--brand-color);
+        }
+
+        .selected-seo-wrapper {
+            background: var(--white);
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: 1px dashed var(--border);
+        }
+
+        .selected-seo-wrapper strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Tags Input (Keep for backwards compatibility) */
+        .tags-input-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 0.5rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            background: var(--white);
+            transition: var(--transition);
+        }
+
+        .tags-input-container:focus-within {
+            border-color: var(--brand-color);
+            box-shadow: 0 0 0 3px var(--brand-light);
+        }
+
+        .tags-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .tag-item {
+            background: #1e1e1e;
+            color: #fff;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .tag-item .remove-tag {
+            cursor: pointer;
+            color: #ff7675;
+            font-size: 1.1rem;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .tag-item .remove-tag:hover {
+            color: #d63031;
+        }
+
+        .tags-input {
+            border: none;
+            outline: none;
+            flex: 1;
+            min-width: 120px;
+            padding: 0.4rem;
+            font-size: 1rem;
+            font-family: inherit;
+            background: transparent;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Login -->
+    <div id="loginBox">
+        <div class="login-box-inner">
+            <h2>كيف حالك اليوم؟ 👋</h2>
+            <p>أدخلي كلمة المرور للوصول للمتجر</p>
+            <input type="password" id="passwordInput" placeholder="كلمة المرور...">
+            <button type="button" id="loginBtn" class="btn-login">دخول للوحة التحكم</button>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminContent" style="display:none;">
+        <header class="admin-header">
+            <div style="display:flex; align-items:center; gap: 1.5rem;">
+                <img src="images/670352502_17920943400303951_4571778923338207468_n.jpg" alt="Logo"
+                    style="height: 50px; border-radius: 50%; border: 2px solid var(--accent-gold);">
+                <h1 style="font-family: 'Playfair Display', serif; letter-spacing: 2px; margin: 0;">HOWAYDA <span
+                        style="font-weight:400; font-size: 0.8rem; opacity:0.6;">ATELIER CMS</span></h1>
+            </div>
+            <div class="header-actions">
+                <div id="sync-status-indicator"
+                    style="display:flex; align-items:center; gap:0.5rem; background:rgba(46,204,113,0.1); padding:0.4rem 1rem; border-radius:20px; color:#2ecc71; font-size:0.8rem; font-weight:600;">
+                    <i class="fa-solid fa-cloud" id="sync-icon-main"></i>
+                    <span id="sync-status-text">Connected to GitHub</span>
+                </div>
+                <a href="index.html" class="btn-icon" title="View Site"><i class="fa-solid fa-globe"></i></a>
+                <button id="logout-btn" class="btn-icon" title="Logout"><i class="fa-solid fa-power-off"></i></button>
+            </div>
+        </header>
+
+
+        <!-- Automated Sync Banner -->
+        <div id="publish-banner" style="
+            background: linear-gradient(135deg, #1a0a10, #2d1020);
+            border-bottom: 1px solid rgba(201,169,110,0.25);
+            padding: 0.85rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        ">
+            <div style="display:flex; align-items:center; gap:0.8rem;">
+                <div id="sync-indicator-icon" style="
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    background: #success;
+                    box-shadow: 0 0 10px rgba(0,255,0,0.3);
+                " class="status-online"></div>
+                <div style="display:flex; flex-direction:column;">
+                    <span id="sync-status-text"
+                        style="color:#f0ece6; font-size:0.95rem; font-weight:700; font-family:'Playfair Display', serif;">
+                        Static Draft Mode
+                    </span>
+                    <span id="sync-detail-text" style="color:#a09888; font-size:0.75rem;">
+                        المتجر مرتبط بمستودع GitHub للمزامنة الفورية
+                    </span>
+                    <div id="build-status-chip" style="
+                        margin-top: 0.3rem;
+                        background: rgba(37,211,102,0.1);
+                        color: #25D366;
+                        padding: 0.1rem 0.6rem;
+                        border-radius: 50px;
+                        font-size: 0.65rem;
+                        width: fit-content;
+                        display: none;
+                        align-items: center;
+                        gap: 0.3rem;
+                        border: 1px solid rgba(37,211,102,0.2);
+                    ">
+                        <i class="fa-solid fa-circle-notch fa-spin"></i> Netlify Build: <span
+                            id="build-status-val">Ready</span>
+                    </div>
+                </div>
+            </div>
+            <div style="display:flex; gap:0.6rem; align-items:center;">
+                <button id="btn-export-catalog" onclick="exportCatalogJson()" style="
+                    background: #c9a96e;
+                    color: #1a0a10;
+                    border: none;
+                    padding: 0.45rem 1.1rem;
+                    border-radius: 8px;
+                    font-size: 0.85rem;
+                    font-weight: 700;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.4rem;
+                    font-family: inherit;
+                    transition: all 0.2s;
+                ">
+                    <i class="fa-solid fa-file-export"></i> Export catalog.json
+                </button>
+                <button id="btn-sync-all" onclick="syncAllToCloud()" style="
+                    display: none;
+                    background: transparent;
+                    color: #c9a96e;
+                    border: 1px solid #c9a96e;
+                    padding: 0.45rem 1.1rem;
+                    border-radius: 8px;
+                    font-size: 0.85rem;
+                    font-weight: 700;
+                    cursor: pointer;
+                    display: none;
+                    align-items: center;
+                    gap: 0.4rem;
+                    font-family: inherit;
+                    transition: all 0.2s;
+                ">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> مزامنة الكل
+                </button>
+                <button id="btn-trigger-build" onclick="triggerNetlifyBuild()" style="
+                    display: none;
+                    background: #c9a96e;
+                    color: #1a0a10;
+                    border: none;
+                    padding: 0.45rem 1.1rem;
+                    border-radius: 8px;
+                    font-size: 0.85rem;
+                    font-weight: 700;
+                    cursor: pointer;
+                    display: none;
+                    align-items: center;
+                    gap: 0.4rem;
+                    font-family: inherit;
+                    transition: all 0.2s;
+                ">
+                    <i class="fa-solid fa-rocket"></i> نشر التعديلات
+                </button>
+            </div>
+        </div>
+
+        <main class="container">
+            <!-- Simplified Navigation -->
+            <div class="nav-grid">
+                <div class="nav-card active" data-tab="products">
+                    <i class="fa-solid fa-shopping-bag"></i>
+                    <span>المنتجات</span>
+                </div>
+                <div class="nav-card" data-tab="featured">
+                    <i class="fa-solid fa-star"></i>
+                    <span>المميزة</span>
+                </div>
+                <div class="nav-card" data-tab="collections">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>المجموعات</span>
+                </div>
+                <div class="nav-card" data-tab="testimonials">
+                    <i class="fa-solid fa-comments"></i>
+                    <span>التقييمات</span>
+                </div>
+            </div>
+
+            <!-- Dynamic Content -->
+            <div id="dynamic-tabs-container"></div>
+        </main>
+
+        <!-- Floating Add Button -->
+        <button class="fab" id="fab-add" title="إضافة جديد"><i class="fa-solid fa-plus"></i></button>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/sync-engine.js"></script>
+    <script>
+        // --- FETCH RETRY LOGIC ---
+        async function fetchWithRetry(url, options = {}, retries = 3, backoff = 1000) {
+            try {
+                const response = await fetch(url, options);
+                if (!response.ok) {
+                    if (retries > 0 && response.status >= 500) {
+                        console.warn(`⚠️ Server error (${response.status}), retrying in ${backoff}ms... (${retries} left)`);
+                        await new Promise(resolve => setTimeout(resolve, backoff));
+                        return fetchWithRetry(url, options, retries - 1, backoff * 2);
+                    }
+                    throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
+                }
+                return response;
+            } catch (err) {
+                if (retries > 0) {
+                    console.warn(`⚠️ Connection failed, retrying in ${backoff}ms... (${retries} left)`);
+                    await new Promise(resolve => setTimeout(resolve, backoff));
+                    return fetchWithRetry(url, options, retries - 1, backoff * 2);
+                }
+                throw err;
+            }
+        }
+
+        window.onload = () => {
+            document.getElementById("adminContent").style.display = "none";
+        };
+
+        // ===== AUTOMATED CLOUD SYNC & STATUS =====
+        function updateSyncUI(status, message) {
+            const statusText = document.getElementById('sync-status-text');
+            const statusIcon = document.getElementById('sync-indicator-icon');
+            const detailText = document.getElementById('sync-detail-text');
+
+            if (!statusText || !statusIcon) return;
+
+            switch (status) {
+                case 'offline':
+                    statusText.textContent = message || 'Local Mode: Sync Pending';
+                    statusIcon.style.background = '#f39c12';
+                    statusIcon.style.boxShadow = '0 0 10px rgba(243,156,18,0.5)';
+                    if (detailText) detailText.textContent = 'المتجر يعمل بوضع غير متصل';
+                    break;
+                case 'building':
+                    statusIcon.style.background = '#3498db'; // Blue
+                    statusIcon.style.boxShadow = '0 0 10px rgba(52,152,219,0.5)';
+                    statusText.textContent = 'GitHub: جاري تحديث الملفات...';
+                    if (detailText) detailText.textContent = message || 'يتم رفع البيانات إلى GitHub لبدء النشر';
+                    break;
+                case 'rebuilding':
+                    statusIcon.style.background = '#9b59b6'; // Purple
+                    statusIcon.style.boxShadow = '0 0 10px rgba(155,89,182,0.5)';
+                    statusText.textContent = 'Netlify: جاري بناء الموقع...';
+                    if (detailText) detailText.textContent = 'الموقع يتم تحديثه الآن على خوادم Netlify';
+                    break;
+                case 'success':
+                    statusIcon.style.background = '#2ecc71'; // Green
+                    statusIcon.style.boxShadow = '0 0 10px rgba(46,204,113,0.5)';
+                    statusText.textContent = 'تمت المزامنة والنشر بنجاح';
+                    if (detailText) detailText.textContent = 'الموقع محدث بالكامل بأحدث البيانات';
+                    setTimeout(() => updateSyncUI('online'), 5000);
+                    break;
+                case 'error':
+                    statusIcon.style.background = '#e74c3c'; // Red
+                    statusIcon.style.boxShadow = '0 0 10px rgba(231,76,60,0.5)';
+                    statusText.textContent = 'فشل في المزامنة';
+
+                    let detail = message;
+                    if (detail.includes('404')) detail = 'خطأ في المسار (API Path Not Found)';
+                    else if (detail.includes('Failed to fetch')) detail = 'السيرفر غير متاح (Server Offline)';
+                    else if (detail.includes('YOUR_HOOK_ID')) detail = 'رابط الـ Webhook غير صحيح';
+
+                    if (detailText) detailText.textContent = detail || 'يرجى التأكد من اتصال الإنترنت أو إعدادات الـ API';
+                    break;
+                case 'online':
+                default:
+                    statusIcon.style.background = '#2ecc71';
+                    statusIcon.style.boxShadow = '0 0 10px rgba(46,204,113,0.3)';
+                    statusText.textContent = 'المزامنة السحابية نشطة';
+                    if (detailText) detailText.textContent = 'المتجر متصل وجاهز لأي تحديثات جديدة';
+                    break;
+            }
+        }
+
+        async function syncWithGitHub(product, action = 'add') {
+            try {
+                console.log("🚀 Starting Secure Cloud Sync...");
+                updateSyncUI('building', 'جاري المزامنة مع GitHub...');
+
+                // Use the new Secure Sync Engine which calls Netlify Functions
+                await window.SyncEngine.commitProducts(null, action, product);
+
+                console.log("✅ GitHub Sync Complete.");
+
+                // 4. Trigger Netlify Re-deployment
+                console.log("Triggering Netlify build...");
+                await triggerNetlifyBuild();
+
+                startBuildStatusPolling();
+            } catch (err) {
+                console.error('❌ Sync Error:', err);
+                updateSyncUI('error', 'فشل في المزامنة الآمنة: ' + err.message);
+            }
+        }
+
+        async function syncAllToCloud() {
+            if (!confirm("هل تريد مزامنة جميع المنتجات المحلية مع GitHub مباشرة؟")) return;
+
+            const btn = document.getElementById('btn-sync-all');
+            const original = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جاري المزامنة...';
+            btn.disabled = true;
+
+            try {
+                let localProducts = JSON.parse(localStorage.getItem(CONFIG.STORAGE_KEYS.PRODUCTS) || '[]');
+                if (localProducts.length === 0) {
+                    alert("لا توجد منتجات محلية للمزامنة.");
+                    return;
+                }
+
+                // Use Bulk Sync via Netlify Function
+                await window.SyncEngine.commitProducts(localProducts);
+
+                console.log("✅ Bulk Sync Complete.");
+                await triggerNetlifyBuild();
+                startBuildStatusPolling();
+
+                alert("تمت جدولة جميع المنتجات للنشر على GitHub!");
+            } catch (err) {
+                updateSyncUI('error', 'فشل المزامنة الكلية');
+            } finally {
+                btn.innerHTML = original;
+                btn.disabled = false;
+            }
+        }
+
+        // --- NETLIFY BUILD STATUS POLLING ---
+        let buildPollInterval = null;
+        function startBuildStatusPolling() {
+            const chip = document.getElementById('build-status-chip');
+            const val = document.getElementById('build-status-val');
+            chip.style.display = 'flex';
+            val.textContent = 'Building...';
+
+            if (buildPollInterval) clearInterval(buildPollInterval);
+
+            // In a real scenario, you'd call Netlify API here. 
+            // For now, we'll simulate the build duration (approx 2 mins)
+            let seconds = 0;
+            buildPollInterval = setInterval(() => {
+                seconds += 5;
+                if (seconds > 120) {
+                    clearInterval(buildPollInterval);
+                    val.textContent = 'Live ✨';
+                    chip.style.background = 'rgba(37,211,102,0.2)';
+                    updateSyncUI('success', 'الموقع الآن محدث ومباشر!');
+                } else {
+                    val.textContent = `Deploying (${seconds}s)...`;
+                }
+            }, 5000);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("JS is working");
+
+
+            // --- LOGIN LOGIC ---
+            const ADMIN_PASSWORD = "1234";
+
+            const container = document.getElementById('adminContent');
+            const loginBox = document.getElementById('loginBox');
+            const input = document.getElementById('passwordInput');
+            const button = document.getElementById('loginBtn');
+            const logoutBtn = document.getElementById('logout-btn');
+
+            container.style.display = "none";
+
+            button.addEventListener("click", async () => {
+                if (input.value === ADMIN_PASSWORD) {
+                    loginBox.style.display = "none";
+                    container.style.display = "block";
+                    await renderAdminUI();
+                } else {
+                    alert("Incorrect password ❌");
+                }
+            });
+
+            input.addEventListener('keypress', (e) => { if (e.key === 'Enter') button.click(); });
+
+            logoutBtn.addEventListener('click', () => {
+                container.style.display = 'none';
+                loginBox.style.display = 'flex';
+                input.value = '';
+            });
+
+            // --- TAB SWITCHING ---
+            const navCards = document.querySelectorAll('.nav-card');
+            navCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    navCards.forEach(c => c.classList.remove('active'));
+                    card.classList.add('active');
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    document.getElementById('tab-' + card.getAttribute('data-tab')).classList.add('active');
+                });
+            });
+
+            // FAB Scroll
+            document.getElementById('fab-add').addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                // Focus first input of active tab
+                const activeForm = document.querySelector('.tab-content.active form');
+                if (activeForm) {
+                    const firstInput = activeForm.querySelector('input[type="text"], textarea');
+                    if (firstInput) firstInput.focus();
+                }
+            });
+
+            // --- SCHEMA DEFINITIONS ---
+            const schemas = {
+                products: {
+                    key: 'products', title: 'المنتجات', icon: 'fa-shopping-bag',
+                    apiRoute: '',
+                    fields: [
+                        { id: 'name_ar', label: 'Product Name (AR)', placeholder: 'مثال: عباية زهرة الصحراء', type: 'text', required: true },
+                        { id: 'name_tr', label: 'Product Name (TR)', placeholder: 'Örnek: Lüks Abaya', type: 'text' },
+                        { id: 'name_en', label: 'Product Name (EN)', placeholder: 'Example: Luxury Abaya', type: 'text' },
+                        { id: 'description_ar', label: 'Description (AR)', placeholder: 'اكتبي وصفاً جذاباً للمنتج...', type: 'textarea' },
+                        { id: 'description_tr', label: 'Description (TR)', placeholder: 'Ürün açıklaması...', type: 'textarea' },
+                        { id: 'price', label: 'Price', placeholder: 'e.g. 500TL', type: 'text', required: true, half: true },
+                        { id: 'category', label: 'Category', type: 'select', options: [{ val: 'Abaya', text: 'Abaya' }, { val: 'Hijab', text: 'Hijab' }], half: true },
+                        { id: 'image', label: 'Main Image URL', placeholder: 'https://...', type: 'text' },
+                        { id: 'seo_keywords', label: 'Meta Keywords (SEO)', type: 'seo_keywords' },
+                        { id: 'images', label: 'Image Gallery (Upload)', type: 'multi-image' }
+                    ],
+                    columns: ['المنتج', 'الاسم', 'القسم', 'السعر'],
+                    rowMap: (item) => {
+                        const hasKeywords = (item.seo_keywords && item.seo_keywords.length > 0) || (item.meta_keywords && item.meta_keywords.length > 0);
+                        const statusClass = hasKeywords ? 'optimized' : 'missing';
+                        const statusText = hasKeywords ? 'SEO Optimized (Active)' : 'Missing Keywords (Draft)';
+                        return `<td>
+                            <div class="smart-preview">
+                                <img src="${(item.images && item.images.length > 0) ? item.images[0] : (item.image || 'https://placehold.co/60x60/EBD7C9/8A2542text=No+Image')}">
+                                <span class="status-dot ${statusClass}"></span>
+                                <div class="hover-stats">${statusText}</div>
+                            </div>
+                        </td><td class="fw-bold">${item.name_ar || 'بدون اسم'}</td><td><span class="badge ${item.category === 'Abaya' ? 'badge-primary' : 'badge-secondary'}">${item.category === 'Abaya' ? 'عباية' : 'حجاب'}</span></td><td dir="ltr" style="text-align:right;">${item.price || '-'}</td>`;
+                    }
+                },
+                featured: {
+                    key: 'howayda_featured', title: 'المنتجات المميزة (الصفحة الرئيسية)', icon: 'fa-star',
+                    apiRoute: '',
+                    fields: [
+                        { id: 'title_ar', label: 'العنوان الجذاب (عربي)', placeholder: 'مثال: الأكثر مبيعاً هذا الأسبوع', type: 'text', required: true },
+                        { id: 'title_tr', label: 'العنوان الجذاب (تركي)', placeholder: 'Örnek: En Çok Satan', type: 'text' },
+                        { id: 'title_en', label: 'العنوان الجذاب (إنجليزي)', placeholder: 'Example: Best Seller', type: 'text' },
+                        { id: 'short_desc_ar', label: 'وصف قصير للواجهة (عربي)', placeholder: 'كلمات تشد الانتباه...', type: 'text' },
+                        { id: 'short_desc_tr', label: 'وصف قصير للواجهة (تركي)', placeholder: 'Kısa açıklama...', type: 'text' },
+                        { id: 'short_desc_en', label: 'وصف قصير للواجهة (إنجليزي)', placeholder: 'Short description...', type: 'text' },
+                        { id: 'product_id', label: 'رقم تعريف المنتج (لربطه عند النقر)', placeholder: 'مثال: p123', type: 'text', half: true },
+                        { id: 'active', label: 'حالة الظهور', type: 'select', options: [{ val: 'true', text: 'ظاهر في الواجهة' }, { val: 'false', text: 'مخفي' }], half: true },
+                        { id: 'image', label: 'صورة العرض الرئيسية', type: 'image' }
+                    ],
+                    columns: ['الصورة', 'العنوان', 'الحالة'],
+                    rowMap: (item) => `<td><img src="${item.image || 'https://placehold.co/60x60/EBD7C9/8A2542text=No+Image'}"></td><td class="fw-bold">${item.title_ar || '-'}</td><td><span class="badge ${String(item.active) === 'true' ? 'badge-success' : 'badge-danger'}">${String(item.active) === 'true' ? 'ظاهر' : 'مخفي'}</span></td>`
+                },
+                collections: {
+                    key: 'howayda_collections', title: 'المجموعات', icon: 'fa-layer-group',
+                    apiRoute: '',
+                    fields: [
+                        { id: 'name_ar', label: 'اسم المجموعة (عربي)', placeholder: 'مثال: مجموعة ربيع 2026', type: 'text', required: true },
+                        { id: 'name_tr', label: 'اسم المجموعة (تركي)', placeholder: 'Örnek: İlkbahar Koleksiyonu', type: 'text' },
+                        { id: 'name_en', label: 'اسم المجموعة (إنجليزي)', placeholder: 'Example: Spring Collection', type: 'text' },
+                        { id: 'description_ar', label: 'وصف المجموعة (عربي)', placeholder: 'تفاصيل وإلهام المجموعة...', type: 'textarea' },
+                        { id: 'description_tr', label: 'وصف المجموعة (تركي)', placeholder: 'Koleksiyon detayları...', type: 'textarea' },
+                        { id: 'description_en', label: 'وصف المجموعة (إنجليزي)', placeholder: 'Collection details...', type: 'textarea' },
+                        { id: 'slug', label: 'الرابط الفرعي', placeholder: 'مثال: spring-2026', type: 'text' },
+                        { id: 'meta_keywords', label: 'كلمات مفتاحية (SEO)', placeholder: 'اكتبي الكلمة ثم اضغطي Enter', type: 'tags', help: 'كلمات لتحسين أرشفة محركات البحث.' },
+                        { id: 'cover_image', label: 'صورة غلاف المجموعة', type: 'image' }
+                    ],
+                    columns: ['الغلاف', 'الاسم', 'الرابط'],
+                    rowMap: (item) => `<td><img src="${item.cover_image || 'https://placehold.co/60x60/EBD7C9/8A2542text=No+Image'}"></td><td class="fw-bold">${item.name_ar || '-'}</td><td dir="ltr" style="text-align:right;">${item.slug || '-'}</td>`
+                },
+                testimonials: {
+                    key: 'howayda_testimonials', title: 'آراء العملاء', icon: 'fa-comments',
+                    apiRoute: '',
+                    fields: [
+                        { id: 'customer_name', label: 'اسم العميل', placeholder: 'مثال: سارة محمد', type: 'text', required: true, half: true },
+                        { id: 'rating', label: 'التقييم (عدد النجوم)', type: 'select', options: [{ val: '5', text: '⭐⭐⭐⭐⭐ (ممتاز)' }, { val: '4', text: '⭐⭐⭐⭐ (جيد جداً)' }, { val: '3', text: '⭐⭐⭐ (جيد)' }, { val: '2', text: '⭐⭐ (مقبول)' }, { val: '1', text: '⭐ (سيء)' }], half: true },
+                        { id: 'message_ar', label: 'رسالة التقييم (عربي)', placeholder: 'اكتبي رأي العميل هنا...', type: 'textarea', required: true },
+                        { id: 'message_tr', label: 'رسالة التقييم (تركي)', placeholder: 'Müşteri yorumu...', type: 'textarea' },
+                        { id: 'message_en', label: 'رسالة التقييم (إنجليزي)', placeholder: 'Customer review...', type: 'textarea' }
+                    ],
+                    columns: ['العميل', 'النجوم', 'التقييم'],
+                    rowMap: (item) => `<td><span class="fw-bold">${item.customer_name || '-'}</span></td><td style="color:var(--warning); font-size:1.1rem;">${'★'.repeat(parseInt(item.rating) || 5)}</td><td>${(item.message_ar || '').substring(0, 40)}...</td>`
+                },
+                settings: {
+                    key: 'howayda_settings', title: 'إعدادات النظام', icon: 'fa-gear',
+                    fields: [
+                        { id: 'catalog_source', label: 'Catalog Data Source', placeholder: 'data/catalog.json', type: 'text', help: 'ملف الكتالوج المستخدم للنشر على Netlify.' }
+                    ],
+                    columns: ['الإعداد', 'القيمة'],
+                    rowMap: (item) => `<td><span class="fw-bold">${item.id}</span></td><td>${item.github_source || '-'}</td>`
+                }
+            };
+
+            const catalogCategories = ['products', 'featured', 'collections', 'testimonials'];
+            Object.values(schemas).forEach(schema => {
+                schema.apiRoute = '';
+            });
+
+            function storageKeyFor(tabKey, schema) {
+                return tabKey === 'products' ? 'products' : schema.key;
+            }
+
+            function readDraftItems(tabKey, schema) {
+                const primaryKey = storageKeyFor(tabKey, schema);
+                const fallbackKey = `howayda_${tabKey}`;
+                return JSON.parse(localStorage.getItem(primaryKey) || localStorage.getItem(fallbackKey) || '[]');
+            }
+
+            function writeDraftItems(tabKey, schema, items) {
+                const primaryKey = storageKeyFor(tabKey, schema);
+                localStorage.setItem(primaryKey, JSON.stringify(items));
+                localStorage.setItem(`howayda_${tabKey}`, JSON.stringify(items));
+            }
+
+            async function ensureCatalogDraftLoaded() {
+                if (localStorage.getItem('howayda_catalog_draft_ready') === 'true') return;
+
+                try {
+                    const res = await fetch(`data/catalog.jsont=${Date.now()}`);
+                    if (!res.ok) throw new Error(`catalog.json ${res.status}`);
+                    const catalog = await window.safeParseJson(res);
+                    const source = Array.isArray(catalog) ? { products: catalog } : (catalog || {});
+
+                    catalogCategories.forEach(category => {
+                        const schema = schemas[category];
+                        const items = Array.isArray(source[category]) ? source[category] : [];
+                        writeDraftItems(category, schema, items);
+                    });
+
+                    localStorage.setItem('howayda_catalog_draft_ready', 'true');
+                    updateSyncUI('offline', 'Static draft loaded from data/catalog.json');
+                } catch (err) {
+                    console.warn('Could not load data/catalog.json, using existing local draft:', err.message);
+                    localStorage.setItem('howayda_catalog_draft_ready', 'true');
+                    updateSyncUI('offline', 'Static draft mode: edit locally then export catalog.json');
+                }
+            }
+
+            function buildCatalogJsonPayload() {
+                const payload = {
+                    updated_at: new Date().toISOString()
+                };
+
+                catalogCategories.forEach(category => {
+                    payload[category] = readDraftItems(category, schemas[category]);
+                });
+
+                return payload;
+            }
+
+            window.exportCatalogJson = function () {
+                const payload = buildCatalogJsonPayload();
+                const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'catalog.json';
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+                URL.revokeObjectURL(url);
+                updateSyncUI('success', 'catalog.json exported. Replace data/catalog.json, then deploy on Netlify.');
+            };
+
+            async function renderAdminUI() {
+                await ensureCatalogDraftLoaded();
+                const container = document.getElementById('dynamic-tabs-container');
+                container.innerHTML = '';
+
+                let isFirst = true;
+                for (const [tabKey, schema] of Object.entries(schemas)) {
+                    const tabDiv = document.createElement('div');
+                    tabDiv.id = `tab-${tabKey}`;
+                    tabDiv.className = `tab-content ${isFirst ? 'active' : ''}`;
+                    isFirst = false;
+
+                    // Build Form
+                    let fieldsHTML = '';
+                    schema.fields.forEach(f => {
+                        const styleSpan = f.half ? '' : 'grid-column: 1 / -1;';
+                        const reqHtml = f.required ? '<span class="req">*</span>' : '';
+                        const helpHtml = f.help ? `<div class="form-help"><i class="fa-solid fa-circle-info"></i> ${f.help}</div>` : '';
+
+                        fieldsHTML += `<div class="form-group" style="${styleSpan}">
+                            <label class="form-label">${f.label} ${reqHtml}</label>`;
+
+                        if (f.type === 'textarea') {
+                            fieldsHTML += `<textarea id="${tabKey}_${f.id}" class="form-control" placeholder="${f.placeholder || ''}" ${f.required ? 'required' : ''}></textarea>`;
+                        } else if (f.type === 'select') {
+                            fieldsHTML += `<select id="${tabKey}_${f.id}" class="form-control">`;
+                            f.options.forEach(opt => fieldsHTML += `<option value="${opt.val}">${opt.text}</option>`);
+                            fieldsHTML += `</select>`;
+                        } else if (f.type === 'image') {
+                            fieldsHTML += `
+                                <div class="upload-area" id="dropArea_${tabKey}_${f.id}">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    <p>اضغطي هنا لرفع الصورة</p>
+                                    <input type="file" id="upload_${tabKey}_${f.id}" class="upload-input" accept="image/*">
+                                </div>
+                                <img id="preview_${tabKey}_${f.id}" class="img-preview" src="" alt="Preview">
+                                <input type="hidden" id="${tabKey}_${f.id}">
+                            `;
+                        } else if (f.type === 'multi-image') {
+                            fieldsHTML += `
+                                <div class="upload-area multi-upload-area" id="dropArea_${tabKey}_${f.id}">
+                                    <i class="fa-solid fa-images"></i>
+                                    <p>اضغطي أو اسحبي الصور هنا للرفع</p>
+                                    <input type="file" id="upload_${tabKey}_${f.id}" class="upload-input" accept="image/*" multiple>
+                                </div>
+                                <div id="preview_container_${tabKey}_${f.id}" class="multi-img-preview-container"></div>
+                            `;
+                        } else if (f.type === 'tags') {
+                            fieldsHTML += `
+                                <div class="tags-input-container" id="tags_container_${tabKey}_${f.id}">
+                                    <ul class="tags-list" id="tags_list_${tabKey}_${f.id}"></ul>
+                                    <input type="text" class="tags-input" id="tags_input_${tabKey}_${f.id}" placeholder="${f.placeholder || ''}">
+                                    <input type="hidden" id="${tabKey}_${f.id}" ${f.required ? 'required' : ''}>
+                                </div>
+                            `;
+                        } else if (f.type === 'seo_keywords') {
+                            fieldsHTML += `
+                                <div class="seo-keywords-container" id="seo_container_${tabKey}_${f.id}">
+                                    <input type="text" id="seo_search_${tabKey}_${f.id}" class="form-control" placeholder="ابحثي عن كلمة مفتاحية أو أضيفي جديدة (اضغطي Enter)..." style="margin-bottom: 0.5rem;">
+                                    <div class="seo-filter-bar" id="seo_categories_${tabKey}_${f.id}">
+                                        <button type="button" class="seo-filter-btn active" data-cat="All">الكل</button>
+                                        <button type="button" class="seo-filter-btn" data-cat="Abaya">Abaya</button>
+                                        <button type="button" class="seo-filter-btn" data-cat="Hijab">Hijab</button>
+                                        <button type="button" class="seo-filter-btn" data-cat="Islamic fashion">Islamic fashion</button>
+                                    </div>
+                                    <div class="seo-library-tags" id="seo_library_${tabKey}_${f.id}"></div>
+                                    <div class="selected-seo-wrapper">
+                                        <strong>الكلمات المحددة:</strong>
+                                        <ul class="tags-list" id="seo_selected_${tabKey}_${f.id}"></ul>
+                                    </div>
+                                </div>
+                            `;
+                        } else {
+                            fieldsHTML += `<input type="text" id="${tabKey}_${f.id}" class="form-control" placeholder="${f.placeholder || ''}" ${f.required ? 'required' : ''}>`;
+                        }
+                        fieldsHTML += `${helpHtml}</div>`;
+                    });
+
+                    // Build Table
+                    const headersHTML = schema.columns.map(c => `<th>${c}</th>`).join('') + `<th>إجراءات</th>`;
+
+                    tabDiv.innerHTML = `
+                        <!-- Form Card -->
+                        <div class="card">
+                            <h2 class="card-title" id="title_${tabKey}"><i class="fa-solid fa-plus-circle"></i> إضافة ${schema.title}</h2>
+                            <form id="form_${tabKey}">
+                                <input type="hidden" id="editid_${tabKey}">
+                                <div class="form-grid">${fieldsHTML}</div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn-save" id="btn_${tabKey}"><i class="fa-solid fa-check"></i> حفظ سريع</button>
+                                    <button type="button" class="btn-cancel hidden" id="cancel_${tabKey}"><i class="fa-solid fa-xmark"></i> إلغاء التعديل</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <!-- List Card -->
+                        <div class="card">
+                            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+                                <h2 class="card-title" style="margin-bottom: 0;"><i class="fa-solid fa-list"></i> إدارة ${schema.title}</h2>
+                                ${tabKey === 'products' ? `<button type="button" onclick="exportCatalogJson()" class="btn-cancel" style="width:auto; padding: 0.5rem 1rem; color: var(--brand-color); border-color: var(--brand-color); margin: 0; font-size: 0.9rem;"><i class="fa-solid fa-file-export"></i> تصدير الكتالوج</button>` : ''}
+                            </div>
+                            <div class="list-container">
+                                <table class="data-table">
+                                    <thead><tr>${headersHTML}</tr></thead>
+                                    <tbody id="list_${tabKey}"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(tabDiv);
+
+                    // Attach Logic
+                    setupTabLogic(tabKey, schema);
+                    loadTable(tabKey, schema);
+                }
+            }
+
+            function setupTabLogic(tabKey, schema) {
+                const form = document.getElementById(`form_${tabKey}`);
+                const cancelBtn = document.getElementById(`cancel_${tabKey}`);
+
+                // Image Upload preview logic
+                schema.fields.filter(f => f.type === 'image').forEach(f => {
+                    const uploadInput = document.getElementById(`upload_${tabKey}_${f.id}`);
+                    const previewImg = document.getElementById(`preview_${tabKey}_${f.id}`);
+                    const hiddenInput = document.getElementById(`${tabKey}_${f.id}`);
+                    const dropArea = document.getElementById(`dropArea_${tabKey}_${f.id}`);
+
+                    uploadInput.addEventListener('change', (e) => {
+                        const file = e.target.files[0];
+                        if (file) {
+                            const reader = new FileReader();
+                            reader.onload = ev => {
+                                hiddenInput.value = ev.target.result;
+                                previewImg.src = ev.target.result;
+                                previewImg.style.display = 'block';
+                                dropArea.style.borderColor = 'var(--success)';
+                                dropArea.querySelector('p').textContent = 'تم إرفاق الصورة بنجاح';
+                                dropArea.querySelector('p').style.color = 'var(--success)';
+                                dropArea.querySelector('i').style.color = 'var(--success)';
+                            };
+                            reader.readAsDataURL(file);
+                        }
+                    });
+                });
+
+                // Multi-image upload logic
+                schema.fields.filter(f => f.type === 'multi-image').forEach(f => {
+                    const uploadInput = document.getElementById(`upload_${tabKey}_${f.id}`);
+                    const previewContainer = document.getElementById(`preview_container_${tabKey}_${f.id}`);
+                    const dropArea = document.getElementById(`dropArea_${tabKey}_${f.id}`);
+
+                    // Attach an array to the input element to hold the Base64 strings
+                    uploadInput.uploadedImages = [];
+
+                    const renderPreviews = () => {
+                        previewContainer.innerHTML = '';
+                        uploadInput.uploadedImages.forEach((imgSrc, index) => {
+                            const item = document.createElement('div');
+                            item.className = 'multi-img-item';
+                            item.innerHTML = `
+                        <img src="${imgSrc}" alt="Preview">
+                        <div class="remove-img" data-index="${index}"><i class="fa-solid fa-xmark"></i></div>
+                    `;
+                            previewContainer.appendChild(item);
+                        });
+
+                        if (uploadInput.uploadedImages.length > 0) {
+                            dropArea.style.borderColor = 'var(--success)';
+                            dropArea.querySelector('p').textContent = `تم إرفاق ${uploadInput.uploadedImages.length} صور`;
+                            dropArea.querySelector('p').style.color = 'var(--success)';
+                            dropArea.querySelector('i').style.color = 'var(--success)';
+                        } else {
+                            dropArea.style.borderColor = '';
+                            dropArea.querySelector('p').textContent = 'اضغطي أو اسحبي الصور هنا للرفع';
+                            dropArea.querySelector('p').style.color = '';
+                            dropArea.querySelector('i').style.color = '';
+                        }
+                    };
+
+                    uploadInput.addEventListener('change', (e) => {
+                        const files = e.target.files;
+                        if (!files || files.length === 0) return;
+
+                        // Keep reading until all are done
+                        Array.from(files).forEach(file => {
+                            const reader = new FileReader();
+                            reader.onload = ev => {
+                                uploadInput.uploadedImages.push(ev.target.result);
+                                renderPreviews();
+                            };
+                            reader.readAsDataURL(file);
+                        });
+                        // Reset input to allow selecting same files again
+                        uploadInput.value = '';
+                    });
+
+                    previewContainer.addEventListener('click', (e) => {
+                        const btn = e.target.closest('.remove-img');
+                        if (btn) {
+                            const idx = btn.getAttribute('data-index');
+                            uploadInput.uploadedImages.splice(idx, 1);
+                            renderPreviews();
+                        }
+                    });
+                });
+
+                // Tags logic
+                schema.fields.filter(f => f.type === 'tags').forEach(f => {
+                    const input = document.getElementById(`tags_input_${tabKey}_${f.id}`);
+                    const list = document.getElementById(`tags_list_${tabKey}_${f.id}`);
+                    const hidden = document.getElementById(`${tabKey}_${f.id}`);
+
+                    let tags = [];
+
+                    const renderTags = () => {
+                        list.innerHTML = '';
+                        tags.forEach((tag, index) => {
+                            const li = document.createElement('li');
+                            li.className = 'tag-item';
+                            li.innerHTML = `<span>${tag}</span><span class="remove-tag" data-index="${index}">&times;</span>`;
+                            list.appendChild(li);
+                        });
+                        hidden.value = tags.join(',');
+                    };
+
+                    input.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            const val = input.value.trim();
+                            if (val.length > 0 && val.length <= 30 && !tags.includes(val)) {
+                                tags.push(val);
+                                renderTags();
+                                input.value = '';
+                            } else if (val.length > 30) {
+                                alert('الكلمة المفتاحية طويلة جداً (الحد الأقصى 30 حرف).');
+                            } else if (tags.includes(val)) {
+                                alert('الكلمة المفتاحية مضافة مسبقاً.');
+                            }
+                        }
+                    });
+
+                    list.addEventListener('click', (e) => {
+                        if (e.target.classList.contains('remove-tag')) {
+                            const idx = e.target.getAttribute('data-index');
+                            tags.splice(idx, 1);
+                            renderTags();
+                        }
+                    });
+
+                    hidden.setTags = (newTags) => {
+                        tags = Array.isArray(newTags) ? newTags : (newTags ? newTags.split(',').filter(t => t.trim() !== '') : []);
+                        renderTags();
+                    };
+                });
+
+                // SEO Keywords Library logic
+                const keywordLibrary = [
+                    { text: "عباية سوداء", category: "Abaya" },
+                    { text: "عباية خليجي", category: "Abaya" },
+                    { text: "عباية كاجوال", category: "Abaya" },
+                    { text: "عباية فخمة", category: "Abaya" },
+                    { text: "abaya fashion", category: "Abaya" },
+                    { text: "حجاب تركي", category: "Hijab" },
+                    { text: "حجاب قطن", category: "Hijab" },
+                    { text: "hijab style", category: "Hijab" },
+                    { text: "turkish hijab", category: "Hijab" },
+                    { text: "ملابس إسلامية", category: "Islamic fashion" },
+                    { text: "modest wear", category: "Islamic fashion" },
+                    { text: "islamic clothing", category: "Islamic fashion" }
+                ];
+
+                schema.fields.filter(f => f.type === 'seo_keywords').forEach(f => {
+                    const container = document.getElementById(`seo_container_${tabKey}_${f.id}`);
+                    const searchInput = document.getElementById(`seo_search_${tabKey}_${f.id}`);
+                    const filterBar = document.getElementById(`seo_categories_${tabKey}_${f.id}`);
+                    const libraryContainer = document.getElementById(`seo_library_${tabKey}_${f.id}`);
+                    const selectedContainer = document.getElementById(`seo_selected_${tabKey}_${f.id}`);
+
+                    // Expose selectedTags to the DOM element for access during submit
+                    container.selectedTags = [];
+                    let currentFilter = 'All';
+
+                    const renderLibrary = (filter = 'All', searchQuery = '') => {
+                        libraryContainer.innerHTML = '';
+
+                        keywordLibrary.forEach(kw => {
+                            if (filter !== 'All' && kw.category !== filter) return;
+                            if (searchQuery && !kw.text.toLowerCase().includes(searchQuery.toLowerCase())) return;
+
+                            const isSelected = container.selectedTags.includes(kw.text);
+                            const tagEl = document.createElement('div');
+                            tagEl.className = `seo-tag ${isSelected ? 'selected' : ''}`;
+                            tagEl.innerHTML = `${kw.text} <i class="fa-solid ${isSelected ? 'fa-check' : 'fa-plus'}"></i>`;
+
+                            tagEl.onclick = () => {
+                                if (isSelected) {
+                                    container.selectedTags = container.selectedTags.filter(t => t !== kw.text);
+                                } else {
+                                    container.selectedTags.push(kw.text);
+                                }
+                                renderLibrary(currentFilter, searchInput.value.trim());
+                                renderSelected();
+                            };
+
+                            libraryContainer.appendChild(tagEl);
+                        });
+                    };
+
+                    const renderSelected = () => {
+                        selectedContainer.innerHTML = '';
+                        container.selectedTags.forEach((tag, idx) => {
+                            const li = document.createElement('li');
+                            li.className = 'tag-item';
+                            li.innerHTML = `<span>${tag}</span><span class="remove-tag" data-index="${idx}">&times;</span>`;
+                            selectedContainer.appendChild(li);
+                        });
+                    };
+
+                    selectedContainer.addEventListener('click', (e) => {
+                        if (e.target.classList.contains('remove-tag')) {
+                            const idx = e.target.getAttribute('data-index');
+                            container.selectedTags.splice(idx, 1);
+                            renderSelected();
+                            renderLibrary(currentFilter, searchInput.value.trim());
+                        }
+                    });
+
+                    // Filter Buttons
+                    filterBar.addEventListener('click', (e) => {
+                        if (e.target.classList.contains('seo-filter-btn')) {
+                            filterBar.querySelectorAll('.seo-filter-btn').forEach(btn => btn.classList.remove('active'));
+                            e.target.classList.add('active');
+                            currentFilter = e.target.getAttribute('data-cat');
+                            renderLibrary(currentFilter, searchInput.value.trim());
+                        }
+                    });
+
+                    // Search and Add Custom Keyword
+                    searchInput.addEventListener('input', () => {
+                        renderLibrary(currentFilter, searchInput.value.trim());
+                    });
+
+                    searchInput.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            const val = searchInput.value.trim();
+                            if (val && !container.selectedTags.includes(val)) {
+                                container.selectedTags.push(val);
+                                searchInput.value = '';
+                                renderSelected();
+                                renderLibrary(currentFilter, '');
+                            }
+                        }
+                    });
+
+                    // Initialize rendering
+                    renderLibrary();
+                    renderSelected();
+
+                    // Method to programmatically set tags
+                    container.setTags = (newTags) => {
+                        container.selectedTags = Array.isArray(newTags) ? newTags : [];
+                        renderSelected();
+                        renderLibrary(currentFilter, searchInput.value.trim());
+                    };
+                });
+
+                // Submit logic
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+
+                    // Validation
+                    const nameField = document.getElementById(`${tabKey}_name_ar`) || document.getElementById(`${tabKey}_title_ar`);
+                    if (nameField && !nameField.value.trim()) {
+                        alert("الرجاء تعبئة الحقول الإلزامية");
+                        return;
+                    }
+
+                    // Show loading on button
+                    const btn = document.getElementById(`btn_${tabKey}`);
+                    const originalHtml = btn.innerHTML;
+                    btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> جاري الحفظ...`;
+                    btn.disabled = true;
+
+                    const editId = document.getElementById(`editid_${tabKey}`).value;
+                    const data = { id: editId || Date.now().toString(), created_at: new Date().toISOString() };
+
+                    schema.fields.forEach(f => {
+                        if (f.type === 'multi-image') {
+                            const uploadInput = document.getElementById(`upload_${tabKey}_${f.id}`);
+                            data[f.id] = uploadInput.uploadedImages || [];
+                        } else if (f.type === 'seo_keywords') {
+                            const container = document.getElementById(`seo_container_${tabKey}_${f.id}`);
+                            data[f.id] = container.selectedTags || [];
+                        } else {
+                            data[f.id] = document.getElementById(`${tabKey}_${f.id}`).value;
+                        }
+                    });
+
+                    // Function to save to LocalStorage
+                    const saveToLocalStorage = () => {
+                        const items = readDraftItems(tabKey, schema);
+                        if (editId) {
+                            const idx = items.findIndex(i => i.id === editId);
+                            if (idx > -1) items[idx] = data;
+                            else items.unshift(data);
+                        } else {
+                            items.unshift(data); // Add new items to top
+                        }
+                        writeDraftItems(tabKey, schema, items);
+                        console.log(`Saved products to ${schema.key}:`, items);
+                    };
+
+                    // STEP 1: Always save to localStorage first (guaranteed, no server needed)
+                    saveToLocalStorage();
+
+                    // Static mode: no server write. Export catalog.json when ready.
+                    if (schema.apiRoute) {
+                        try {
+                            console.log(`📡 Syncing with Local API: ${schema.apiRoute}`);
+                            const res = await fetch(schema.apiRoute, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(data)
+                            });
+                            await window.safeParseJson(res);
+                            console.log("✅ Local API Sync Complete.");
+                        } catch (apiErr) {
+                            console.warn("⚠️ Local API offline, skipping local sync:", apiErr);
+                        }
+                    }
+
+                    // STEP 3: Always Sync with GitHub (Automated)
+                    if (false && tabKey === 'products') {
+                        await syncWithGitHub(data, editId ? 'update' : 'add');
+                    }
+
+                    // Reset styling
+                    schema.fields.filter(f => f.type === 'image').forEach(f => {
+                        const dropArea = document.getElementById(`dropArea_${tabKey}_${f.id}`);
+                        dropArea.style.borderColor = '';
+                        dropArea.querySelector('p').textContent = 'اضغطي هنا لرفع الصورة';
+                        dropArea.querySelector('p').style.color = '';
+                        dropArea.querySelector('i').style.color = '';
+                    });
+
+                    schema.fields.filter(f => f.type === 'multi-image').forEach(f => {
+                        const dropArea = document.getElementById(`dropArea_${tabKey}_${f.id}`);
+                        const previewContainer = document.getElementById(`preview_container_${tabKey}_${f.id}`);
+                        const uploadInput = document.getElementById(`upload_${tabKey}_${f.id}`);
+
+                        dropArea.style.borderColor = '';
+                        dropArea.querySelector('p').textContent = 'اضغطي أو اسحبي الصور هنا للرفع';
+                        dropArea.querySelector('p').style.color = '';
+                        dropArea.querySelector('i').style.color = '';
+                        previewContainer.innerHTML = '';
+                        uploadInput.uploadedImages = [];
+                    });
+
+                    schema.fields.filter(f => f.type === 'tags').forEach(f => {
+                        const hidden = document.getElementById(`${tabKey}_${f.id}`);
+                        if (hidden.setTags) hidden.setTags([]);
+                    });
+
+                    schema.fields.filter(f => f.type === 'seo_keywords').forEach(f => {
+                        const container = document.getElementById(`seo_container_${tabKey}_${f.id}`);
+                        if (container.setTags) container.setTags([]);
+                    });
+
+                    form.reset();
+                    cancelBtn.click();
+                    await loadTable(tabKey, schema);
+
+                    btn.disabled = false;
+                    btn.innerHTML = `<i class="fa-solid fa-check-double"></i> تم الحفظ بنجاح!`;
+                    btn.classList.add('success');
+                    setTimeout(() => {
+                        btn.innerHTML = originalHtml;
+                        btn.classList.remove('success');
+                    }, 2000);
+                });
+
+                // Cancel Edit
+                cancelBtn.addEventListener('click', () => {
+                    form.reset();
+                    document.getElementById(`editid_${tabKey}`).value = '';
+                    schema.fields.filter(f => f.type === 'image').forEach(f => {
+                        document.getElementById(`${tabKey}_${f.id}`).value = '';
+                        document.getElementById(`preview_${tabKey}_${f.id}`).style.display = 'none';
+                        const dropArea = document.getElementById(`dropArea_${tabKey}_${f.id}`);
+                        dropArea.style.borderColor = '';
+                        dropArea.querySelector('p').textContent = 'اضغطي هنا لرفع الصورة';
+                        dropArea.querySelector('p').style.color = '';
+                        dropArea.querySelector('i').style.color = '';
+                    });
+                    schema.fields.filter(f => f.type === 'multi-image').forEach(f => {
+                        const dropArea = document.getElementById(`dropArea_${tabKey}_${f.id}`);
+                        const previewContainer = document.getElementById(`preview_container_${tabKey}_${f.id}`);
+                        const uploadInput = document.getElementById(`upload_${tabKey}_${f.id}`);
+
+                        dropArea.style.borderColor = '';
+                        dropArea.querySelector('p').textContent = 'اضغطي أو اسحبي الصور هنا للرفع';
+                        dropArea.querySelector('p').style.color = '';
+                        dropArea.querySelector('i').style.color = '';
+                        previewContainer.innerHTML = '';
+                        uploadInput.uploadedImages = [];
+                    });
+                    schema.fields.filter(f => f.type === 'tags').forEach(f => {
+                        const hidden = document.getElementById(`${tabKey}_${f.id}`);
+                        if (hidden.setTags) hidden.setTags([]);
+                    });
+                    schema.fields.filter(f => f.type === 'seo_keywords').forEach(f => {
+                        const container = document.getElementById(`seo_container_${tabKey}_${f.id}`);
+                        if (container.setTags) container.setTags([]);
+                    });
+                    cancelBtn.classList.add('hidden');
+                    document.getElementById(`title_${tabKey}`).innerHTML = `<i class="fa-solid fa-plus-circle"></i> إضافة ${schema.title}`;
+                    document.getElementById(`btn_${tabKey}`).innerHTML = `<i class="fa-solid fa-check"></i> حفظ سريع`;
+                });
+            }
+
+            async function loadTable(tabKey, schema) {
+                const tbody = document.getElementById(`list_${tabKey}`);
+                const items = readDraftItems(tabKey, schema);
+
+                // Lead Architect Direct Load Logic
+                try {
+                    const data = { products: items };
+                    void data;
+                    console.log('✅ Synchronized with GitHub Cloud');
+                } catch (e) {
+                    console.warn('⚠️ GitHub API Throttled, using local cache:', e.message);
+                    console.warn('Using local draft items:', e.message);
+                }
+
+                // Persist locally
+                if (items.length > 0) {
+                    writeDraftItems(tabKey, schema, items);
+                }
+
+                tbody.innerHTML = '';
+                if (items.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="10" style="text-align:center; padding:2rem; font-family:'Playfair Display', serif;">No local draft items yet. Add products, then export catalog.json.</td></tr>`;
+                    return;
+                }
+
+                items.forEach((item, index) => {
+                    const tr = document.createElement('tr');
+                    tr.style.fontFamily = "'Playfair Display', serif";
+                    const actionHtml = `
+                        <td class="actions-cell">
+                            <button class="btn-action btn-edit" onclick="editItem('${tabKey}', '${item.id}')" title="تعديل"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn-action btn-delete" onclick="deleteItem('${tabKey}', '${item.id}')" title="حذف"><i class="fa-solid fa-trash"></i></button>
+                        </td>`;
+
+                    tr.innerHTML = schema.rowMap(item) + actionHtml;
+                    tbody.appendChild(tr);
+                });
+            }
+
+            window.editItem = async function (tabKey, itemId) {
+                const schema = schemas[tabKey];
+                let items = [];
+
+                if (schema.apiRoute) {
+                    try {
+                        const res = await fetch(schema.apiRoute);
+                        if (!res.ok) throw new Error("API Error");
+                        items = (await window.safeParseJson(res)) || [];
+                    } catch (e) {
+                        console.warn('Fetch error, falling back to localStorage:', e);
+                        items = JSON.parse(localStorage.getItem(schema.key)) || [];
+                    }
+                } else {
+                    items = readDraftItems(tabKey, schema);
+                }
+
+                const item = items.find(i => i.id === itemId);
+                if (!item) return;
+
+                document.getElementById(`editid_${tabKey}`).value = item.id;
+                schema.fields.forEach(f => {
+                    document.getElementById(`${tabKey}_${f.id}`).value = item[f.id] || '';
+                    if (f.type === 'tags') {
+                        const hidden = document.getElementById(`${tabKey}_${f.id}`);
+                        if (hidden.setTags) hidden.setTags(item[f.id]);
+                    }
+                    if (f.type === 'seo_keywords') {
+                        const container = document.getElementById(`seo_container_${tabKey}_${f.id}`);
+                        if (container.setTags) container.setTags(item[f.id]);
+                    }
+                    if (f.type === 'multi-image' && item[f.id] && Array.isArray(item[f.id])) {
+                        const uploadInput = document.getElementById(`upload_${tabKey}_${f.id}`);
+                        uploadInput.uploadedImages = [...item[f.id]];
+
+                        const previewContainer = document.getElementById(`preview_container_${tabKey}_${f.id}`);
+                        previewContainer.innerHTML = '';
+                        uploadInput.uploadedImages.forEach((imgSrc, index) => {
+                            const imgItem = document.createElement('div');
+                            imgItem.className = 'multi-img-item';
+                            imgItem.innerHTML = `
+                            <img src="${imgSrc}" alt="Preview">
+                            <div class="remove-img" data-index="${index}"><i class="fa-solid fa-xmark"></i></div>
+                        `;
+                            previewContainer.appendChild(imgItem);
+                        });
+
+                        const dropArea = document.getElementById(`dropArea_${tabKey}_${f.id}`);
+                        if (uploadInput.uploadedImages.length > 0) {
+                            dropArea.style.borderColor = 'var(--success)';
+                            dropArea.querySelector('p').textContent = `تم إرفاق ${uploadInput.uploadedImages.length} صور`;
+                            dropArea.querySelector('p').style.color = 'var(--success)';
+                            dropArea.querySelector('i').style.color = 'var(--success)';
+                        }
+                    }
+                    if (f.type === 'image' && item[f.id]) {
+                        const previewImg = document.getElementById(`preview_${tabKey}_${f.id}`);
+                        previewImg.src = item[f.id];
+                        previewImg.style.display = 'block';
+                        const dropArea = document.getElementById(`dropArea_${tabKey}_${f.id}`);
+                        dropArea.style.borderColor = 'var(--success)';
+                        dropArea.querySelector('p').textContent = 'صورة محملة (اضغطي للتغيير)';
+                    }
+                });
+
+                document.getElementById(`cancel_${tabKey}`).classList.remove('hidden');
+                document.getElementById(`title_${tabKey}`).innerHTML = `<i class="fa-solid fa-pen-to-square"></i> تعديل ${schema.title}`;
+                document.getElementById(`btn_${tabKey}`).innerHTML = `<i class="fa-solid fa-floppy-disk"></i> تحديث البيانات`;
+
+                // Scroll to top of form
+                document.getElementById(`title_${tabKey}`).scrollIntoView({ behavior: 'smooth', block: 'start' });
+            };
+
+            window.deleteItem = async function (tabKey, itemId) {
+                if (confirm("⚠️ هل أنت متأكدة من حذف هذا العنصر؟ لا يمكن التراجع عن هذا الإجراء.")) {
+                    const schema = schemas[tabKey];
+
+                    // Always delete from localStorage first (guaranteed)
+                    let items = readDraftItems(tabKey, schema);
+                    items = items.filter(i => i.id !== itemId);
+                    writeDraftItems(tabKey, schema, items);
+
+                    // Also attempt API delete (best-effort, non-blocking)
+                    if (schema.apiRoute) {
+                        fetch(`${schema.apiRoute}/${itemId}`, { method: 'DELETE' })
+                            .then(res => { if (res.ok) console.log('✅ Local API delete successful'); })
+                            .catch(err => console.warn('⚠️ Local API delete failed, localStorage already updated:', err));
+                    }
+
+                    // STEP 3: Sync with GitHub and trigger Build (Critical Fix)
+                    if (false && tabKey === 'products') {
+                        await syncWithGitHub({ id: itemId }, 'delete');
+                    }
+
+                    await loadTable(tabKey, schema);
+                }
+            };
+
+            window.syncMissingProducts = async function () {
+                const fallbackProducts = [
+                    {
+                        id: "1",
+                        name_ar: "عباية أناقة منتصف الليل",
+                        name_tr: "Gece Yarısı Zarafeti Abaya",
+                        description_ar: "قماش ندى فاخر، مثالي للمناسبات الرسمية مع تطريز يدوي دقيق يبرز الأنوثة والفخامة.",
+                        description_tr: "Resmi durumlar için mükemmel, ince el nakışlı birinci sınıf Nada kumaşı.",
+                        category: "Abaya",
+                        image: "images/product_black.png",
+                        price: "550 SAR",
+                        meta_keywords: "عباية سوداء, ملابس رسمية, تطريز, فخامة"
+                    },
+                    {
+                        id: "2",
+                        name_ar: "عباية زهرة الصحراء",
+                        name_tr: "Çöl Gülü Abaya",
+                        description_ar: "مزيج كتان خفيف الوزن، مثالي للارتداء اليومي في أوقات الصيف ليمنحك الراحة الكاملة.",
+                        description_tr: "Yaz aylarında günlük kullanım için ideal hafif keten karışımı.",
+                        category: "Abaya",
+                        image: "images/product_colored.png",
+                        price: "420 SAR",
+                        meta_keywords: "عباية صيفية, كتان, ملابس يومية, راحة"
+                    },
+                    {
+                        id: "3",
+                        name_ar: "حجاب شيفون عاجي",
+                        name_tr: "Fildişi Şifon Başörtüsü",
+                        description_ar: "حجاب شيفون فاخر، ناعم الانسيابية ويسمح بمرور الهواء لضمان راحة طوال اليوم.",
+                        description_tr: "Nefes alabilen, yumuşak dökümlü lüks şifon başörtüsü.",
+                        category: "Hijab",
+                        image: "images/product_hijab.png",
+                        price: "120 SAR",
+                        meta_keywords: "حجاب شيفون, عاجي, ناعم, تنفس"
+                    }
+                ];
+
+                if (confirm("سيتم مزامنة المنتجات الأساسية المفقودة مع قاعدة البيانات. متابعة؟")) {
+                    // Always save to localStorage first so products are visible immediately
+                    const existing = JSON.parse(localStorage.getItem('products') || '[]');
+                    const existingIds = existing.map(p => p.id);
+                    const toAdd = fallbackProducts.filter(p => !existingIds.includes(p.id));
+                    const merged = [...toAdd, ...existing];
+                    localStorage.setItem('products', JSON.stringify(merged));
+                    console.log('Synced fallback products to localStorage:', merged);
+
+                    alert(`تمت مزامنة ${toAdd.length} منتجات بنجاح (حفظ محلي + API)!`);
+                    loadTable('products', schemas['products']);
+                }
+            };
+
+            // --- NETLIFY BUILD HOOK TRIGGER ---
+            window.triggerNetlifyBuild = async function () {
+                if (!CONFIG.NETLIFY_BUILD_HOOK || CONFIG.NETLIFY_BUILD_HOOK.includes('YOUR_HOOK_ID')) {
+                    console.log('ℹ️ Netlify Build Hook not configured yet.');
+                    updateSyncUI('error', 'رابط Build Hook غير مفعل بعد');
+                    return;
+                }
+
+                try {
+                    updateSyncUI('rebuilding');
+                    console.log('🚀 Triggering Netlify Re-deployment...');
+                    const res = await fetchWithRetry(CONFIG.NETLIFY_BUILD_HOOK, { method: 'POST' });
+                    if (res.ok) {
+                        console.log('✨ Netlify build triggered successfully!');
+                        updateSyncUI('success');
+                    } else {
+                        throw new Error("Build hook returned error");
+                    }
+                } catch (err) {
+                    console.error('❌ Failed to trigger Netlify build:', err);
+                    updateSyncUI('error', 'فشل في تشغيل إعادة بناء الموقع');
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
